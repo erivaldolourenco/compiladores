@@ -1,0 +1,5 @@
+int entrance()
+{
+	put(‘Ola mundo’);
+
+}
