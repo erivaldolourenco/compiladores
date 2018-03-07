@@ -1,43 +1,32 @@
 # -*- coding: utf-8 -*-
-from enum import Enum
-
-""" Definir os valores das categorias """
-
-class Category(Enum):
-    ID = 0
-    OPA = 1
-
+from category_token import Category
 
 
 class Token(object):
 
     def __init__(self, lexeme, category, position):
-        #lexema e uma String
+        # lexema e uma String
         self.lexeme = lexeme
         # categoria e um Enum
         self.category = category
         # posicao array[linha,clouna]
         self.position = position
 
-    """Funcao que recebe um lexema e retorna a categoria"""
-    def getToken(self, lexema):
-    	for cat in Category:
-    		if cat.value == lexema:
-    			return cat
-    		else:
-    			print("Token nao foi encontrado")
+
+    """Metodo que imprime o Token"""
+
+    def printToken(self):
+        print('[' + str(self.position[0]) + ',' + str(self.position[1]) + '] (' +
+              str(self.category) + ') {' + self.lexeme + '}')
 
 
 if __name__ == '__main__':
+    array = []
+    array.append(3)
+    array.append(45)
+    caategory = Category.OP_ADD
+    lexeme = '+'
 
+    token = Token(lexeme, caategory, array)
 
-	print(dir(Category))
-	for cat in Category:
-		print("CATEGORIA->"+str(cat))
-		if cat == Category.ID:
-			print("SIM")
-		else:
-			print("NAO")
-
-
-	# print(Token().whatsClass('id'))
+    token.printToken()

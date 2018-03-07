@@ -1,4 +1,4 @@
- int entrance()
+ int begin()
 {
 	put(‘Ola mundo’);
 
