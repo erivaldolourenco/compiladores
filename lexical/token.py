@@ -16,8 +16,8 @@ class Token(object):
     """Metodo que imprime o Token"""
 
     def printToken(self):
-        print('[' + str(self.position[0]) + ',' + str(self.position[1]) + '] (' +
-              str(self.category) + ') {' + self.lexeme + '}')
+        print('[' + str(self.position[0]) + ' , ' + str(self.position[1]) + '] ( ' +
+              str(self.category) + ' ) { -' + self.lexeme + '- }')
 
 
 if __name__ == '__main__':

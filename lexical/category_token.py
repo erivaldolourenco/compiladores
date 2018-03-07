@@ -52,5 +52,23 @@ class Category(Enum):
     FEC_PAR = ')'
     SEP_VIRG = ','
     SEP_P_VIRG = ';'
-    
     ID = '[^A-Za-z0-9]'
+
+    @classmethod
+    def getCategory(self, lexeme):
+        for ctg in Category:
+            # print(ctg.value+"-----"+lexeme)
+            if ctg.value == lexeme:
+                return ctg
+        if lexeme.isalnum():
+            ctg = Category.ID
+            return ctg
+       
+
+if __name__ == '__main__':
+
+    print(Category.getCategory('int'))
+
+    print("===============================")
+
+    # print(list(Category))
