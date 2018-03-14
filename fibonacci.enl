@@ -1,0 +1,24 @@
+variable
+{
+    int num, sum, cont, a, b;
+}
+
+function void fibonacci(int n){
+num = n;
+    sum = 0;
+    a = 1;
+    b = 1;
+    put(sum);
+for(i = 1; i < num; i = i+1)
+{
+    b = a;
+    a = sum;
+    sum = a + b;
+    put(sum);
+}
+}
+
+int begin()
+{
+    fibonacci(5);
+}

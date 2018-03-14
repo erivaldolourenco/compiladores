@@ -9,7 +9,7 @@ class Token(object):
         self.lexeme = lexeme
         # categoria e um Enum
         self.category = category
-        # posicao array[linha,clouna]
+        # posicao array[linha,coluna]
         self.position = position
 
 

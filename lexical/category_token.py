@@ -39,6 +39,7 @@ class Category(Enum):
     FUNCTION = 'function'
     RETURN = 'return'
     VOID = 'void'
+    VARIABLE = 'variable'
 
     """Tipos"""
     INT = 'int'
@@ -52,7 +53,9 @@ class Category(Enum):
     FEC_PAR = ')'
     SEP_VIRG = ','
     SEP_P_VIRG = ';'
+    SIMPLE_ASP = '\xe2\x80\x98'
     ID = '[^A-Za-z0-9]'
+    UNKNOWN = 999
 
     @classmethod
     def getCategory(self, lexeme):
@@ -63,11 +66,22 @@ class Category(Enum):
         if lexeme.isalnum():
             ctg = Category.ID
             return ctg
-       
+        else:
+            ctg = Category.UNKNOWN
+            return ctg
+    
+    @classmethod
+    def isSpecial(self, caracter):
+        special = [' ',',','(',')','{','}',';','+','=','\xe2', '\x80', '\x98','\n']
+        for c in special:
+            if caracter == c:
+                return True
+
+        return False
 
 if __name__ == '__main__':
 
-    print(Category.getCategory('int'))
+    print(Category.isSpecial('\n'))
 
     print("===============================")
 
