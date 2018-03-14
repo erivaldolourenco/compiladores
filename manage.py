@@ -8,7 +8,7 @@ op = sys.argv[1]
 
 if op == "-l":
     print("Analizador Lexico")
-    lexicalanalyzer.Lexeme(file).analizer()
+    lexicalanalyzer.Lexeme(file).analise()
 
 elif op == "-s":
     print("Analizador Sitantico")
