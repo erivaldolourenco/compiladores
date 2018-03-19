@@ -11,7 +11,7 @@ class Lexeme(object):
         self.file = file
 
     def nextToken(self):
-        print("CHAMANDO NEXTOKEN")
+        #print("CHAMANDO NEXTOKEN")
         with open(self.file) as file:
             filelines = file.readlines()
             line = filelines[position[0]]
@@ -142,8 +142,8 @@ class Lexeme(object):
             #print("ultima linha arquivo:"+str(filelines.__len__())+" - Ultimo Caracter:"+str(filelines[-1].__len__()))
             #print("------------------------------------------------------------------------")
 
-            if(position[0] == filelines.__len__() and position[1] == filelines[-1].__len__()):
-
+            if(position[0] == (filelines.__len__()-1) and position[1] == filelines[-1].__len__()):
+                print('---------------- Lista de tokens concluidas!! ----------------' )
                 return False
             else:
                 return True
