@@ -1,5 +1,5 @@
  int begin()
 {
-    put(‘Ola mundo’);
+    put('Ola mundo');
     c = a + b;
 }

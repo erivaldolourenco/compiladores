@@ -7,10 +7,11 @@ file = sys.argv[2]
 op = sys.argv[1]
 
 if op == "-l":
-    print("Analizador Lexico")
-    lexicalanalyzer.Lexeme(file).analise()
+    print("======================= Analisador Lexico =======================")
+    while lexicalanalyzer.Lexeme(file).isToken():
+    	lexicalanalyzer.Lexeme(file).nextToken().printToken()
 
 elif op == "-s":
-    print("Analizador Sitantico")
+    print("======================= Analisador Sitantico =======================")
 else:
-    print("Opcao Invalida!")
+    print("======================= Opcao Invalida! =======================")

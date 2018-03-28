@@ -51,10 +51,11 @@ class Category(Enum):
     FEC_CH = '}'
     ABR_PAR = '('
     FEC_PAR = ')'
+    ABR_COC = '['
+    FEC_COC = '['
     SEP_VIRG = ','
     SEP_P_VIRG = ';'
-    SIMPLE_ASP = '\xe2\x80\x98'
-
+    SIMPLE_ASP = "'"
     ID = '[^A-Za-z0-9]'
     UNKNOWN = 999
 
@@ -73,7 +74,7 @@ class Category(Enum):
     
     @classmethod
     def isSpecial(self, caracter):
-        special = [' ',',','(',')','{','}',';','+','=','\xe2', '\x80', '\x98','\n','&']
+        special = [' ',',','(',')','{','}','[',']',';','+','-','*','/','%','|','=',"'",'\t','\n','&','>','<','!']
         for c in special:
             if caracter == c:
                 return True
