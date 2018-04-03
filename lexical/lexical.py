@@ -49,7 +49,9 @@ class LexicalTable(object):
             ']': Category.FEC_COC,
             ',': Category.SEP_VIRG,
             ';': Category.SEP_P_VIRG,
-            "'": Category.SIMPLE_ASP
+            "'": Category.SIMPLE_ASP,
+
+            'put': Category.PRINTOUT,
 
         }
 
@@ -57,11 +59,7 @@ class LexicalTable(object):
     def isSpecial(self, caracter):
         special = [' ', ',', '(', ')', '{', '}', '[', ']', ';', '+', '-',
                    '*', '/', '%', '|', '=', "'", '\t', '\n', '&', '>', '<', '!']
-        for c in special:
-            if caracter == c:
-                return True
-
-        return False
+        return caracter in special
 
 
 

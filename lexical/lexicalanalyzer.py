@@ -10,7 +10,6 @@ class Lexeme(object):
     def __init__(self, file):
         self.file = file
 
-
     def nextToken(self):
         with open(self.file) as fopen:
             filelines = fopen.readlines()
@@ -20,75 +19,17 @@ class Lexeme(object):
             while cont:
 
                 for i in range(position[1], int(line.__len__())):
-                    if(line[i] != ' '):
+
+                    if (line[i] != ' '):
                         lexema += line[i]
-                    if line[i].isalnum():
-                        if(LexicalTable.isSpecial(line[i + 1])):
-                            atual_postion = [position[0], position[1]]
-                            token = Token(lexema, Category.ID, atual_postion)
-                            position[1] += 1
-                            cont = False
-                            lexeme = ''
-                            return token
-                        else:
-                            position[1] += 1
 
-                    elif line[i] == ' ':
+                    if line[i] == ' ':
                         position[1] += 1
-
-                    elif line[i] == '(':
-                        atual_postion = [position[0], position[1]]
-                        token = Token(lexema, LexicalTable().lexical_table['('], atual_postion)
-                        cont = False
-                        lexema = ''
-                        position[1] += 1
-                        return token
-
-                    elif line[i] == ')':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table[')'], position)
-                        cont = False
-                        lexema = ''
-                        position[1] += 1
-                        return token
-
-                    elif line[i] == '{':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table['{'], position)
-                        cont = False
-                        lexema = ''
-                        position[1] += 1
-                        return token
-
-                    elif line[i] == '}':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table['}'], position)
-                        cont = False
-                        lexema = ''
-                        position[1] += 1
-                        return token
-
-                    elif line[i] == '[':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table['['], position)
-                        cont = False
-                        lexema = ''
-                        position[1] += 1
-                        return token
-
-                    elif line[i] == ']':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table[']'], position)
-                        cont = False
-                        lexema = ''
-                        position[1] += 1
-                        return token
 
                     elif line[i] == '+':
                         token = Token(
                             lexema, LexicalTable().lexical_table['+'], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
 
@@ -96,7 +37,6 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table['-'], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
 
@@ -104,7 +44,6 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table['*'], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
 
@@ -112,14 +51,13 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table['/'], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
+
                     elif line[i] == '>':
                         token = Token(
                             lexema, LexicalTable().lexical_table['>'], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
 
@@ -127,7 +65,6 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table['<'], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
 
@@ -135,15 +72,6 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table['!'], position)
                         cont = False
-                        lexema = ''
-                        position[1] += 1
-                        return token
-
-                    elif line[i] == ';':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table[';'], position)
-                        cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
 
@@ -151,7 +79,55 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table['='], position)
                         cont = False
-                        lexema = ''
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == '(':
+                        token = Token(lexema, LexicalTable(
+                        ).lexical_table['('], position)
+                        cont = False
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == ')':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table[')'], position)
+                        cont = False
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == '{':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table['{'], position)
+                        cont = False
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == '}':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table['}'], position)
+                        cont = False
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == '[':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table['['], position)
+                        cont = False
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == ']':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table[']'], position)
+                        cont = False
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == ';':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table[';'], position)
+                        cont = False
                         position[1] += 1
                         return token
 
@@ -159,7 +135,6 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table[','], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
 
@@ -167,27 +142,45 @@ class Lexeme(object):
                         token = Token(
                             lexema, LexicalTable().lexical_table["'"], position)
                         cont = False
-                        lexema = ''
                         position[1] += 1
                         return token
+
+                    elif line[i].isalnum():
+                        if LexicalTable.isSpecial(line[i + 1]):
+                            if lexema.isdigit():
+                                token = Token(lexema, Category.CONST, position)
+                                position[1] += 1
+                                cont = False
+                                return token
+                            else:
+                                try:
+                                    token = Token(lexema, LexicalTable(
+                                    ).lexical_table[lexema], position)
+                                except Exception as e:
+                                    token = Token(
+                                        lexema, Category.ID, position)
+                                position[1] += 1
+                                cont = False
+                                return token
+                        else:
+                            position[1] += 1
 
                     elif line[i] == '\t':
                         position[1] += 3
 
                     elif line[i] == "\n":
-                        position[1] = 0  # zera coluna
-                        position[0] += 1  # incrementa linha
-                        lexema = ''  # zera  lexema
+                        position[1] = 0
+                        position[0] += 1
+                        lexema = ''
                         line = filelines[position[0]]
                         break
 
                     else:
-                        # print("DESCONHECIDO")
+                        """print("DESCONHECIDO")"""
                         lexema += line[i]
                         token = Token(lexema, Category.UNKNOWN, position)
-                        cont = False
-                        lexema = ''
                         position[1] += 1
+                        return token
 
     def isToken(self):
         with open(self.file) as fopen:

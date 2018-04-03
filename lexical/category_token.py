@@ -57,28 +57,7 @@ class Category(Enum):
     SEP_P_VIRG = 36
     SIMPLE_ASP = 37
     ID = 38
-    
+    CONST = 39
+    PRINTOUT = 40
+
     UNKNOWN = 99
-
-    @classmethod
-    def getCategory(self, lexeme):
-        for ctg in Category:
-            # print(ctg.value+"-----"+lexeme)
-            if ctg.value == lexeme:
-                return ctg
-        if lexeme.isalnum():
-            ctg = Category.ID
-            return ctg
-        else:
-            ctg = Category.UNKNOWN
-            return ctg
-    
-
-
-if __name__ == '__main__':
-
-    print(Category.isSpecial('\n'))
-
-    print("===============================")
-
-    # print(list(Category))
