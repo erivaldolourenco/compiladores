@@ -64,5 +64,4 @@ class LexicalTable(object):
 
 
 
-if __name__ == '__main__':
-    print(str( LexicalTable().lexical_table['+'].name ) )
+
