@@ -1,7 +1,7 @@
  int begin()
 {
     put('Ola mundo');
-    c = a + b;
+    c = a +    b;
     if(a == b && b >= c || d != a){
         int b = 80;
     }

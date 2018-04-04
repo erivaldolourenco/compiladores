@@ -39,26 +39,26 @@ class Category(Enum):
     FUNCTION = 22
     RETURN = 23
     VOID = 24
-    VARIABLE = 25
+    
 
     """Tipos"""
-    INT = 26
-    CHAR = 27
-    VECTOR = 28
+    INT = 25
+    CHAR = 26
+    VECTOR = 27
 
     """Simbolos especiais"""
-    ABR_CH = 29
-    FEC_CH = 30
-    ABR_PAR = 31
-    FEC_PAR = 32
-    ABR_COC = 33
-    FEC_COC = 34
-    SEP_VIRG = 35
-    SEP_P_VIRG = 36
-    SIMPLE_ASP = 37
+    ABR_CH = 28
+    FEC_CH = 29
+    ABR_PAR = 30
+    FEC_PAR = 31
+    ABR_COC = 32
+    FEC_COC = 33
+    SEP_VIRG = 34
+    SEP_P_VIRG = 35
+    SIMPLE_ASP = 36
 
-    ID = 38
-    CONST = 39
-    PRINTOUT = 40
+    ID = 37
+    CONST = 38
+    PRINTOUT = 39
 
     UNKNOWN = 99

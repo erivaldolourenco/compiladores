@@ -54,6 +54,12 @@ class Lexeme(object):
                         position[1] += 1
                         return token
 
+                    elif line[i] == '%':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table['%'], position)
+                        cont = False
+                        position[1] += 1
+                        return token                    
                     elif line[i] == '>':
                         if line[i + 1] == '=':
                             lexema += line[i + 1]

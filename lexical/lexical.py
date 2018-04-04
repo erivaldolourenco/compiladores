@@ -35,7 +35,6 @@ class LexicalTable(object):
             'function': Category.FUNCTION,
             'return': Category.RETURN,
             'void': Category.VOID,
-            'variable': Category.VARIABLE,
 
             'int': Category.INT,
             'char': Category.CHAR,
@@ -58,7 +57,7 @@ class LexicalTable(object):
     @classmethod
     def isSpecial(self, caracter):
         special = [' ', ',', '(', ')', '{', '}', '[', ']', ';', '+', '-',
-                   '*', '/', '%', '|', '=', "'", '\t', '\n', '&', '>', '<', '!']
+                   '*', '/', '%', '|', '=', "'", '\t', '\n', '&', '>', '<', '!', '#','$']
         return caracter in special
 
 
