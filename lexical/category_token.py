@@ -56,6 +56,7 @@ class Category(Enum):
     SEP_VIRG = 35
     SEP_P_VIRG = 36
     SIMPLE_ASP = 37
+
     ID = 38
     CONST = 39
     PRINTOUT = 40

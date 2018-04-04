@@ -132,15 +132,13 @@ class Lexeme(object):
                             return token
 
                     elif line[i] == '(':
-                        token = Token(lexema, LexicalTable(
-                        ).lexical_table['('], position)
+                        token = Token(lexema, LexicalTable().lexical_table['('], position)
                         cont = False
                         position[1] += 1
                         return token
 
                     elif line[i] == ')':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table[')'], position)
+                        token = Token(lexema, LexicalTable().lexical_table[')'], position)
                         cont = False
                         position[1] += 1
                         return token
@@ -225,8 +223,6 @@ class Lexeme(object):
                         break
 
                     else:
-                        """print("DESCONHECIDO")"""
-                        lexema += line[i]
                         token = Token(lexema, Category.UNKNOWN, position)
                         position[1] += 1
                         return token

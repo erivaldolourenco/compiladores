@@ -1,4 +1,4 @@
-function void shellSort(vect vet, int tam){
+function void shellSort(vector vet, int tam){
     variable {
         int i, j, valor;
         int gap = 1;
