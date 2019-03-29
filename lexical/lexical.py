@@ -12,6 +12,7 @@ class LexicalTable(object):
             '*': Category.OP_MULT,
             '/': Category.OP_DIV,
             '%': Category.OP_RET,
+            '~': Category.OP_UNA,
 
             '==': Category.OP_IGU,
             '!=': Category.OP_DIF,
@@ -19,6 +20,8 @@ class LexicalTable(object):
             '>=': Category.OP_MAIGU,
             '<': Category.OP_ME,
             '>': Category.OP_MA,
+
+            '++': Category.OP_CONC,
 
             '&&': Category.OP_AND,
             '||': Category.OP_OR,
@@ -31,14 +34,19 @@ class LexicalTable(object):
             'while': Category.WHILE,
             'for': Category.FOR,
             'begin': Category.BEGIN,
-            'variable': Category.VARIABLE,
             'function': Category.FUNCTION,
             'return': Category.RETURN,
             'void': Category.VOID,
+            'read': Category.READ,
+            'put': Category.PUT,
+            'break': Category.BREAK,
 
             'int': Category.INT,
+            'float': Category.FLOAT,
             'char': Category.CHAR,
+            'cchar': Category.CCHAR,
             'vector': Category.VECTOR,
+            'bool': Category.BOOL,
 
             '{': Category.ABR_CH,
             '}': Category.FEC_CH,
@@ -49,8 +57,6 @@ class LexicalTable(object):
             ',': Category.SEP_VIRG,
             ';': Category.SEP_P_VIRG,
             "'": Category.SIMPLE_ASP,
-
-            'put': Category.PRINTOUT,
 
         }
 

@@ -27,15 +27,30 @@ class Lexeme(object):
                         position[1] += 1
 
                     elif line[i] == '+':
-                        token = Token(
-                            lexema, LexicalTable().lexical_table['+'], position)
-                        cont = False
-                        position[1] += 1
-                        return token
+                        if line[i + 1] == '+':
+                            lexema += line[i + 1]
+                            token = Token(
+                                lexema, LexicalTable().lexical_table[lexema], position)
+                            cont = False
+                            position[1] += 2
+                            return token
+                        else:
+                            token = Token(
+                                lexema, LexicalTable().lexical_table['+'], position)
+                            cont = False
+                            position[1] += 1
+                            return token
 
                     elif line[i] == '-':
                         token = Token(
                             lexema, LexicalTable().lexical_table['-'], position)
+                        cont = False
+                        position[1] += 1
+                        return token
+
+                    elif line[i] == '~':
+                        token = Token(
+                            lexema, LexicalTable().lexical_table['~'], position)
                         cont = False
                         position[1] += 1
                         return token
