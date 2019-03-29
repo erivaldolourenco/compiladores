@@ -16,7 +16,7 @@ for(i = 1; i < num; i = i+1)
 }
 }
 
-int begin()
+void begin()
 {
     fibonacci(5);
 }
