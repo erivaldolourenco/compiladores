@@ -1,8 +1,7 @@
 function void shellSort(vector vet, int tam){
-    variable {
         int i, j, valor;
         int gap = 1;
-    }
+    
     while(gap<tam){
         gap = 3*gap+1;
     }
@@ -21,10 +20,10 @@ function void shellSort(vector vet, int tam){
 }
 
 
-int begin()
+void begin()
 {
-    variable{
-        int vetor[50], tam = 50;
-    }
+    
+        vector int vetor[50], tam = 50;
+    
     shellsort(vetor, tam);
 }

@@ -1,9 +1,7 @@
-variable
-{
-    int num, sum, cont, a, b;
-}
+
 
 function void fibonacci(int n){
+    int num, sum, cont, a, b;
     num = n;
     sum = 0;
     a = 1;

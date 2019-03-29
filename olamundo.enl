@@ -1,17 +1,4 @@
- int begin()
+﻿ int begin()
 {
     put('Ola mundo');
-    int c;
-    cchar a;
-    float r;
-    bool t;
-
-     c = (~a) + b;
-
-     d++;
-
-    if(a == b && b >= c || d != a){
-        int b = 80;
-    }
-    $$%%¨
 }
