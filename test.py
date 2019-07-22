@@ -1,3 +1,4 @@
+import linecache
 #teste de hashmap
 # import re
 # lexema = ' int entrance()\n'
@@ -10,8 +11,9 @@
 # 		print("ABREPARENTES")
 # 	if letra == '\n':
 # 		print("FIM DE LINHA")
-position = [0,0]
-position[1] = 10
-teste = "erivaldo lourenco mariano"
-for i  in range(position[1],int(teste.__len__())):
-	print(teste[i])
+# position = [0,0]
+# position[1] = 10
+# teste = "erivaldo lourenco mariano"
+# for i  in range(position[1],int(teste.__len__())):
+# 	print(teste[i])
+print linecache.getline('olamundo.enl', 4) 

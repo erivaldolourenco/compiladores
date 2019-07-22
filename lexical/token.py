@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from category_token import Category
+from .category_token import Category
 
 
 class Token(object):
@@ -18,14 +18,17 @@ class Token(object):
         print('[' + str(self.position[0]).zfill(4) + ', ' + str(self.position[1]).zfill(4) + '] (' +
               str(self.category.value).zfill(4) + ', ' + str(self.category.name).ljust(20) + ') {' + self.lexeme + '}')
 
+    # def nextToken():
+    #     pass
 
-if __name__ == '__main__':
-    array = []
-    array.append(3)
-    array.append(45)
-    caategory = Category.OP_ADD
-    lexeme = '+'
 
-    token = Token(lexeme, caategory, array)
+# if __name__ == '__main__':
+#     array = []
+#     array.append(3)
+#     array.append(45)
+#     caategory = Category.OP_ADD
+#     lexeme = '+'
 
-    token.printToken()
+#     token = Token(lexeme, caategory, array)
+
+#     token.printToken()
