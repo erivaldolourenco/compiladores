@@ -11,8 +11,13 @@ if op == "-l":
     print("=====================================")
     lex = Lexeme(file)
 
-    while lex.nextToken() is not None:
-        lex.nextToken().printToken()
+    token = lex.nextToken()
+
+    while token:
+        token.printToken()
+        token = lex.nextToken()
+        # print lex.nextToken().lexeme
+        # token.lexeme
 
     print("=====================================")
     print("CONCLUIDO!")
@@ -23,5 +28,5 @@ elif op == "-s":
 else:
     print("======================== Opcao Invalida! ========================")
 
-if __name__ == '__main__':
-    print("teste")
+# if __name__ == '__main__':
+#     print("teste")

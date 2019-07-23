@@ -4,8 +4,7 @@ from .category_token import Category
 from .lexical_table import LexicalTable
 import linecache
 
-position = [0,0]
-# teste = "-------"
+position = [1,0]
 class Lexeme(object):
     
     def __init__(self, file):
@@ -16,11 +15,6 @@ class Lexeme(object):
     def nextToken(self):
         
         line = linecache.getline(self.file, self.nline)
-
-        # print "=================LINHA"
-        # print self.nline
-        # print line
-        # print "=================NUMERO"
 
         lexema = ''
 
@@ -35,46 +29,64 @@ class Lexeme(object):
             elif line[i] == '+':
                 if line[i + 1] == '+':
                     lexema += line[i + 1]
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                     self.ncolumn += 2
                     return token
                 else:
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table['+'], position)
                     self.ncolumn += 1
                     return token
 
             elif line[i] == '-':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['-'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == '~':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['~'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == '*':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['*'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == '/':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['/'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == '%':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['%'], position)
                 self.ncolumn += 1
                 return token                    
             elif line[i] == '>':
                 if line[i + 1] == '=':
                     lexema += line[i + 1]
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                     self.ncolumn += 2
                     return token
 
                 else:
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table['>'], position)
                     self.ncolumn += 1
                     return token
@@ -82,6 +94,8 @@ class Lexeme(object):
             elif line[i] == '<':
                 if line[i + 1] == '=':
                     lexema += line[i + 1]
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                     self.ncolumn += 2
                     return token
@@ -93,22 +107,30 @@ class Lexeme(object):
             elif line[i] == '!':
                 if line[i + 1] == '=':
                     lexema += line[i + 1]
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                     self.ncolumn += 2
                     return token
                 else:
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table['!'], position)
                     self.ncolumn += 1
                     return token
             elif line[i] == '&':
                 if line[i + 1] == '&':
                     lexema += line[i + 1]
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                     self.ncolumn += 2
                     return token
             elif line[i] == '|':
                 if line[i + 1] == '|':
                     lexema += line[i + 1]
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                     self.ncolumn += 2
                     return token
@@ -116,56 +138,77 @@ class Lexeme(object):
             elif line[i] == '=':
                 if line[i + 1] == '=':
                     lexema += line[i + 1]
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                     self.ncolumn += 2
                     return token
                 else:
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
                     token = Token(lexema, LexicalTable().lexical_table['='], position)
                     self.ncolumn += 1
                     return token
 
             elif line[i] == '(':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['('], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == ')':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table[')'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == '{':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['{'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == '}':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['}'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == '[':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table['['], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == ']':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table[']'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == ';':
-                token = Token(
-                    lexema, LexicalTable().lexical_table[';'], position)
+                position[0] = self.nline
+                position[1] = self.ncolumn
+                token = Token(lexema, LexicalTable().lexical_table[';'], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == ',':
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table[','], position)
                 self.ncolumn += 1
                 return token
 
             elif line[i] == "'":
+                position[0] = self.nline
+                position[1] = self.ncolumn
                 token = Token(lexema, LexicalTable().lexical_table["'"], position)
                 self.ncolumn += 1
                 return token
@@ -173,10 +216,14 @@ class Lexeme(object):
             elif line[i].isalnum():
                 if LexicalTable.isSpecial(line[i + 1]):
                     if lexema.isdigit():
+                        position[0] = self.nline
+                        position[1] = self.ncolumn
                         token = Token(lexema, Category.CONST, position)
                         self.ncolumn += 1
                         return token
                     else:
+                        position[0] = self.nline
+                        position[1] = self.ncolumn
                         try:
                             token = Token(lexema, LexicalTable().lexical_table[lexema], position)
                         except Exception as e:
