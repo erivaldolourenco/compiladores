@@ -1,22 +1,22 @@
-
-
-function void fibonacci(int n){
-    int num, sum, cont, a, b;
-    num = n;
-    sum = 0;
-    a = 1;
-    b = 1;
-    put(sum);
-for(i = 1; i < num; i = i+1)
+function void fibonacci(int num)
 {
-    b = a;
-    a = sum;
-    sum = a + b;
-    put(sum);
-}
+  int i = 0;
+  int j = 1;
+  int k = 1;
+  int t = 0;
+
+  while(k < num){
+        t = i + j;
+        i = j;
+        j = t;
+        put('%d, ', j);
+        k = k + 1;
+  }
 }
 
 void begin()
 {
-    fibonacci(5);
+   int i;
+   read('%d', i);
+   fibonacci(i);
 }
