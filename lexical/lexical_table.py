@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from category_token import Category
+from .category_token import Category
 
 
 class LexicalTable(object):
