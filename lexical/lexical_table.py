@@ -48,6 +48,9 @@ class LexicalTable(object):
             'vector': Category.VECTOR,
             'bool': Category.BOOL,
 
+            'true' : Category.TRUE,
+            'false' : Category.FALSE,
+
             '{': Category.ABR_CH,
             '}': Category.FEC_CH,
             '(': Category.ABR_PAR,

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 from lexical.lexical_analyzer import Lexeme
+from sintatico.sintatico_analyzer import Sintatico   
 
 
 file = sys.argv[2]
@@ -25,6 +26,12 @@ if op == "-l":
     
 elif op == "-s":
     print("==================== Analisador Sitantico =======================")
+    lex = Lexeme(file)
+    token = lex.nextToken()
+
+    Sintatico(token,lex).programa()
+
+
 else:
     print("======================== Opcao Invalida! ========================")
 
