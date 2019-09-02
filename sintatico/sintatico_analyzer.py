@@ -26,24 +26,17 @@ class Sintatico(object):
 
         if (self.token.category == Category.FUNCTION):
             self.token = self.lex.nextToken()
-        # else:
-        #     print('ERRO: FUNCTION ESPERADO')
-        #     self.erro()
             self.tipo()
-        # self.array()
 
             if self.token.category == Category.ID:
                 self.token = self.lex.nextToken()
-                
-                if self.token.category == Category.ABR_PAR:
-                    self.token = self.lex.nextToken()
-                else:
-                    print("ERRO: ABRPAR ESPERADO")
-                    self.erro()
             else:
-                print("TETET")
                 print("ERRO: ID ESPERADO")
-                self.erro()
+
+            if self.token.category == Category.ABR_PAR:
+                self.token = self.lex.nextToken()
+            else:
+                print("ERRO: ABRPAR ESPERADO")
 
             self.l_param()
 
@@ -54,7 +47,9 @@ class Sintatico(object):
                 self.erro()
 
             self.escopo()
-        # self.funcao()
+            self.funcao()
+        else:
+            print("EPSILON")
 
     def begin(self):
         if self.token.category == Category.VOID:
