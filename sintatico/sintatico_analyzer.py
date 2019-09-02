@@ -54,31 +54,26 @@ class Sintatico(object):
     def begin(self):
         if self.token.category == Category.VOID:
             self.token = self.lex.nextToken()
-
-            if self.token.category == Category.BEGIN:
-                self.token = self.lex.nextToken()
-
-                if self.token.category == Category.ABR_PAR:
-                    self.token = self.lex.nextToken()
-
-                    self.l_param()
-                else:
-                    print("ERRO: BEGIN ESPERADO")
-                    self.erro()
-
-            else:
-                print("ERRO: BEGIN ESPERADO")
-                self.erro()
-
         else:
             print("ERRO: VOID ESPERADO")
-            self.erro()
-        # print ("BEGIN")
-        self.parametros()
-        # self.escopo()
 
-    def parametros(self):
-        pass
+        if self.token.category == Category.BEGIN:
+            self.token = self.lex.nextToken()
+        else:
+            print("ERRO: BEGIN ESPERADO")
+            self.erro()
+
+        if self.token.category == Category.ABR_PAR:
+            self.token = self.lex.nextToken()
+        else:
+            print("ERRO: ABR_PAR ESPERADO")
+
+        if self.token.category == Category.FEC_PAR:
+            self.token = self.lex.nextToken()
+        else:
+            print("FECPAR esperado")
+
+        self.escopo()
 
     def tipo(self):
         if self.token.category == Category.INT:
@@ -104,17 +99,25 @@ class Sintatico(object):
             self.erro()
 
 
-    def array(self):
+    def vector(self):
         if self.token.category == Category.ABR_COC:
             self.token = self.lex.nextToken()
-        # else:
-        #     print("ERRO: ABR_COC ESPERADO")
-        #     self.erro()
-        self.array_f()
+        else:
+            print("EPSILON")
 
-    def array_f(self):
-        print('FALTA FAZER')
+        self.vector_f()
 
+
+    def vector_f(self):
+        if self.token.category == Category.FEC_COC:
+            self.token = self.lex.nextToken()
+        else:
+            self.e()
+            if self.token.category == Category.ABR_COC:
+                self.token = self.lex.nextToken()
+            else:
+                print("ERRO: FEC_COC ESPERADO")
+            
     def nome_var(self):
         if self.token.category == Category.ID:
             self.token = self.lex.nextToken()

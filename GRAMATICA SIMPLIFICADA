@@ -1,9 +1,9 @@
 Programa = Funcao Begin
 
-Funcao = 'function' Tipo 'id' 'abPar' LParam 'fecPar' Escopo
+Funcao = 'function' Tipo 'id' 'abrPar' LParam 'fecPar' Escopo
 Funcao = ε
 
-Begin = 'void' 'begin' 'abPar' LParam 'fecPar' Escopo
+Begin = 'void' 'begin' 'abPar' 'fecPar' Escopo
 
 
 LParam = Tipo 'id' LParamF
@@ -19,11 +19,11 @@ Tipo = 'char'
 Tipo = 'bool'
 Tipo = 'void'
 
-Array = 'abCol' ArrayF
-ArrayF = E 'fecCol'
-ArrayF = 'fecCol'
-Array = ε
-NomeVar = 'id' Array
+Vector = 'abCol' VectorF
+Vector = ε
+VectorF = E 'fecCol'
+VectorF = 'fecCol'
+NomeVar = 'id' Vector
 
 ChamadaFunc = 'abrPar' LChamada 'fecPar'
 LChamada = E LChamadaF
@@ -33,10 +33,12 @@ LChamadaF = ε
 
 Escopo = 'abrCh' Comandos 'fecCh'
 
-Decl = Tipo NomeVar AtbDecl DeclF
+Decl = Vetor Tipo NomeVar AtbDecl DeclF
+Vetor = 'vector'
+Vetor = ε
 DeclF = 'sepVirg' NomeVar AtbDecl DeclF
 DeclF = ε
-AtbDecl = 'atrib' E
+AtbDecl = 'atribuicao' E
 AtbDecl = ε
 Read = 'read' 'abPar' NomeVar 'fecPar' 'sepPtv'
 Put = 'put' 'abPar' LChamada 'fecPar' 'sepPtv'
