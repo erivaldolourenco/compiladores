@@ -157,11 +157,8 @@ class Sintatico(object):
         self.nome_var()
         self.l_paramf()
 
-<<<<<<< HEAD
     def chamada_func(self):
-=======
-    def chamadaFunc(self):
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
         if self.token.category == Category.ABR_PAR:
             self.token = self.lex.nextToken()
         else:
@@ -178,11 +175,8 @@ class Sintatico(object):
         self.e()
         self.l_chamadaf()
 
-<<<<<<< HEAD
     def l_chamadaf(self):
-=======
-    def lChamadaF(self):
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
         if self.token.category == Category.SEP_VIRG:
             self.token = self.lex.nextToken()
         else:
@@ -209,11 +203,8 @@ class Sintatico(object):
         self.atb_decl()
         self.decl_f()
 
-<<<<<<< HEAD
     def decl_f(self):
-=======
-    def DeclF(self):
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
         if self.token.category == Category.SEP_VIRG:
             self.token = self.lex.nextToken()
         else:
@@ -226,11 +217,8 @@ class Sintatico(object):
     def decl_f(self):
         pass
 
-<<<<<<< HEAD
     def atb_decl(self):
-=======
-    def atbDecl(self):
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
         if self.token.category == Category.ATRIBUICAO:
             self.token = self.lex.nextToken()
         else:
@@ -261,13 +249,10 @@ class Sintatico(object):
             print("Atribuicao esperado")
         self.e()
 
-<<<<<<< HEAD
+
     def _while(self):
-        if self.token.category == Category._while:
-=======
-    def wHile(self):
         if self.token.category == Category.WHILE:
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
             self.token = self.lex.nextToken()
         else:
             print("while esperado")
@@ -286,11 +271,8 @@ class Sintatico(object):
 
         self.escopo()
 
-<<<<<<< HEAD
     def _if(self):
-=======
-    def iF(self):
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
         if self.token.category == Category.IF:
             self.token = self.lex.nextToken()
         else:
@@ -311,11 +293,8 @@ class Sintatico(object):
         self.escopo()
         self._else()
 
-<<<<<<< HEAD
     def _else(self):
-=======
-    def eLse(self):
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
         if self.token.category == Category.ELSE:
             self.token = self.lex.nextToken()
         else:
@@ -323,13 +302,9 @@ class Sintatico(object):
 
         self.escopo()
 
-<<<<<<< HEAD
     def _for(self):
         if self.token.category == Category.FOR:
-=======
-    def f_for(self):
-        if self.token.category == Category.IF:
->>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
+
             self.token = self.lex.nextToken()
         else:
             print("FOR esperado")
