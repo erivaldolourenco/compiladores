@@ -1,0 +1,111 @@
+Programa = Funcao Begin
+
+Funcao = 'function' Tipo 'id' 'abPar' LParam 'fecPar' Escopo
+Funcao = ε
+
+Begin = 'void' 'begin' 'abPar' LParam 'fecPar' Escopo
+
+
+LParam = Tipo 'id' LParamF
+LParam = ε
+
+LParamF = 'sepVirg' Tipo 'id' LparamF
+LparamF = ε
+
+Tipo = 'int'
+Tipo = 'float'
+Tipo = 'cchar'
+Tipo = 'char'
+Tipo = 'bool'
+Tipo = 'void'
+
+Array = 'abCol' ArrayF
+ArrayF = E 'fecCol'
+ArrayF = 'fecCol'
+Array = ε
+NomeVar = 'id' Array
+
+ChamadaFunc = 'abrPar' LChamada 'fecPar'
+LChamada = E LChamadaF
+LChamada = ε
+LChamadaF = 'SepVirg' E LChamadaF
+LChamadaF = ε
+
+Escopo = 'abrCh' Comandos 'fecCh'
+
+Decl = Tipo NomeVar AtbDecl DeclF
+DeclF = 'sepVirg' NomeVar AtbDecl DeclF
+DeclF = ε
+AtbDecl = 'atrib' E
+AtbDecl = ε
+Read = 'read' 'abPar' NomeVar 'fecPar' 'sepPtv'
+Put = 'put' 'abPar' LChamada 'fecPar' 'sepPtv'
+
+Comandos = Cmd Comandos
+Comandos = ε
+
+Cmd = Read
+Cmd = Put
+Cmd = Decl 'SepPtv'
+Cmd = While
+Cmd = If
+Cmd = For
+Cmd = 'break' 'sepPtv'
+Cmd = 'id' CmdF 'sepPtv'
+Cmd = 'value' E 'sepPtv'
+
+CmdF = Atribuicao
+CmdF = ChamadaFunc
+CmdF = 'abrCoc' E 'fecCoc' CmdFF
+CmdFF = Atribuicao
+Atribuicao = 'atribuicao' E
+While = 'while' 'abPar' E 'fecPar' Escopo
+If = 'if' 'abPar' E 'fecPar' Escopo Else
+Else = 'else'  Escopo
+Else = ε
+For = 'for' NomeVar 'in' E 'to' E 'do' Escopo
+E = Eb Ebr
+Eb = Tb Ebr
+Ebr = 'opOr' Tb Ebr
+Ebr = ε
+Tb = Fb Tbr
+Tbr = 'opAnd' Fb Tbr
+Tbr = ε
+Fb = 'opNegac' ERelUm
+Fb = ERelUm
+ERelUm = ERelDois ERelUmF
+ERelUmF = 'opRel1' ERelDois
+ERelUmF = ε
+ERelDois = EConcat ERelDoisF
+ERelDoisF = 'opRel2' EConcat
+ERelDoisF = ε
+EConcat = Ea EConcatR
+EConcatR = 'opConc' Ea EConcatR
+EConcatR = ε
+Ea = Ta Ear
+Ear = Opa Ta Ear
+Ear = ε
+Ta = EUnario Tar
+Tar = Opm EUnario Tar
+Tar = ε
+EUnario = 'opNegUn' Fa
+EUnario = Fa
+Fa  =  'abPar' E 'fecPar'
+Fa  = 'cteInt'
+Fa  = 'cteFloat'
+Fa  = 'cteChar'
+Fa  = 'cteString'
+Fa  = 'true'
+Fa  = 'false'
+Fa  = Id Far
+Far = Array
+Far = ChamadaFunc
+Opa = 'opAdic'
+Opa = 'opSub'
+Opm = 'opMult'
+Opm = 'opDiv'
+Opm = 'opResto'
+Incr = 'opInc'
+Incr = 'opDec'
+Incr = ε
+Id = 'id' Incr

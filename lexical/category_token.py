@@ -47,7 +47,7 @@ class Category(Enum):
     READ = 26
     PUT = 27
     BREAK = 28
-    RETURN = 29
+    # RETURN = 29
     
 
     """Tipos"""
