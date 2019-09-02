@@ -47,7 +47,7 @@ class Category(Enum):
     READ = 26
     PUT = 27
     BREAK = 28
-    RETURN = 29
+
     
 
     """Tipos"""
@@ -76,10 +76,11 @@ class Category(Enum):
 
     """ Constantes """
     CAD_CARACTER = 47
-    # CONST_INT = 48
-    # CONST_FLO = 49
-    # CONST_CHA = 50
-    CONST = 48
+    CONST_INT = 48
+    CONST_FLO = 49
+    CONST_CHA = 50
+    CONST_CCHAR = 51
+    CONST_BOOL = 52
 
 
-    UNKNOWN = 51
+    UNKNOWN = 60
