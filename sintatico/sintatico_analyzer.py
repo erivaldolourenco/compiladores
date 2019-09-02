@@ -11,7 +11,7 @@ class Sintatico(object):
     def __init__(self, token, lex):
         self.token = token
         self.lex = lex
-    
+
 
     def erro(self):
         print(self.token.printToken())
@@ -157,7 +157,11 @@ class Sintatico(object):
         self.nome_var()
         self.l_paramf()
 
+<<<<<<< HEAD
     def chamada_func(self):
+=======
+    def chamadaFunc(self):
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
         if self.token.category == Category.ABR_PAR:
             self.token = self.lex.nextToken()
         else:
@@ -174,7 +178,11 @@ class Sintatico(object):
         self.e()
         self.l_chamadaf()
 
+<<<<<<< HEAD
     def l_chamadaf(self):
+=======
+    def lChamadaF(self):
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
         if self.token.category == Category.SEP_VIRG:
             self.token = self.lex.nextToken()
         else:
@@ -201,7 +209,11 @@ class Sintatico(object):
         self.atb_decl()
         self.decl_f()
 
+<<<<<<< HEAD
     def decl_f(self):
+=======
+    def DeclF(self):
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
         if self.token.category == Category.SEP_VIRG:
             self.token = self.lex.nextToken()
         else:
@@ -214,7 +226,11 @@ class Sintatico(object):
     def decl_f(self):
         pass
 
+<<<<<<< HEAD
     def atb_decl(self):
+=======
+    def atbDecl(self):
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
         if self.token.category == Category.ATRIBUICAO:
             self.token = self.lex.nextToken()
         else:
@@ -245,8 +261,13 @@ class Sintatico(object):
             print("Atribuicao esperado")
         self.e()
 
+<<<<<<< HEAD
     def _while(self):
         if self.token.category == Category._while:
+=======
+    def wHile(self):
+        if self.token.category == Category.WHILE:
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
             self.token = self.lex.nextToken()
         else:
             print("while esperado")
@@ -265,7 +286,11 @@ class Sintatico(object):
 
         self.escopo()
 
+<<<<<<< HEAD
     def _if(self):
+=======
+    def iF(self):
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
         if self.token.category == Category.IF:
             self.token = self.lex.nextToken()
         else:
@@ -286,7 +311,11 @@ class Sintatico(object):
         self.escopo()
         self._else()
 
+<<<<<<< HEAD
     def _else(self):
+=======
+    def eLse(self):
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
         if self.token.category == Category.ELSE:
             self.token = self.lex.nextToken()
         else:
@@ -294,8 +323,13 @@ class Sintatico(object):
 
         self.escopo()
 
+<<<<<<< HEAD
     def _for(self):
         if self.token.category == Category.FOR:
+=======
+    def f_for(self):
+        if self.token.category == Category.IF:
+>>>>>>> 5a234104438c3c94dfe6b69e625d22b0c43f7374
             self.token = self.lex.nextToken()
         else:
             print("FOR esperado")
@@ -347,5 +381,104 @@ class Sintatico(object):
         self.fb()
         self.tbr()
 
-    def fb(self):
-        pass
+    def ea(self):
+        self.ta()
+        self.ear()
+
+    def ear(self):
+        self.opa()
+        self.ta()
+        self.ear()
+
+    def ta(self):
+        self.eunario()
+        self.tar()
+
+    def tar(self):
+        self.opm()
+        self.eunario()
+        tar()
+
+    def eunario(self):
+        if self.token.category == Category.OP_NOT:
+            self.token = self.lex.nextToken
+            self.fa()
+
+        else:
+            self.fa()
+
+    def fa(self):
+        if self.token.category == Category.ABR_PAR:
+            self.token = self.lex.nextToken
+            e()
+            if self.token.category == Category.FEC_PAR:
+                self.token = self.lex.nextToken
+            else:
+                print("FECPAR ESPERADO")
+
+        elif self.token.category == Category.CONST_INT:
+            self.token = self.lex.nextToken
+            return
+
+        elif self.token.category == Category.CONST_FLO:
+            self.token = self.lex.nextToken
+            return
+
+        elif self.token.category == Category.CONST_CHA:
+            self.token = self.lex.nextToken
+            return
+
+        elif self.token.category == Category.CONST_CCHAR:
+            self.token = self.lex.nextToken
+            return
+
+        elif self.token.category == Category.TRUE :
+            self.token = self.lex.nextToken
+            return
+
+        elif self.token.category == Category.FALSE:
+            self.token = self.lex.nextToken
+            return
+
+        elif self.token.category == Category.ID:
+            self.id()
+            self.far()
+
+
+        else:
+            print("Erro")
+
+    def far(self):
+        self.chamadaFunc()
+
+    def opa(self):
+        if self.token.category == Category.OP_ADD:
+            self.token = self.lex.nextToken
+
+        elif self.token.category == Category.OP_SUB:
+            self.token = self.lex.nextToken
+
+        else:
+            print("OPADD ou OPSUB esperado")
+
+    def opm(self):
+        if self.token.category == Category.OP_MULT:
+            self.token = self.lex.nextToken
+
+        elif self.token.category == Category.OP_DIV:
+            tself.token = self.lex.nextToken
+
+        elif self.token.category == Category.OP_RET:
+            tself.token = self.lex.nextToken
+
+        else:
+            print("OPMULTI OU OPDIV OU OPRET esperado")
+
+    def id(self):
+        if self.token.category == Category.ID:
+            self.token = self.lex.nextToken
+        else:
+            print("ID esperado")
+            erro()
+
+
