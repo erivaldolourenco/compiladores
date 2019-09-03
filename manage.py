@@ -28,8 +28,8 @@ elif op == "-s":
     print("==================== Analisador Sitantico =======================")
     lex = Lexeme(file)
     token = lex.nextToken()
-
     Sintatico(token,lex).programa()
+    print("============================= Fim ===============================")
 
 
 else:

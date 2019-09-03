@@ -1,23 +1,33 @@
 Programa = Funcao Begin
-
 Funcao = 'function' Tipo 'id' 'abrPar' LParam 'fecPar' Escopo
 Funcao = ε
-
-Begin = 'void' 'begin' 'abPar' 'fecPar' Escopo
-
-
+Begin = 'void' 'begin' 'abPar' LParam 'fecPar' Escopo
 LParam = Tipo 'id' LParamF
 LParam = ε
-
 LParamF = 'sepVirg' Tipo 'id' LparamF
 LparamF = ε
-
 Tipo = 'int'
 Tipo = 'float'
 Tipo = 'cchar'
 Tipo = 'char'
 Tipo = 'bool'
 Tipo = 'void'
+Escopo = 'abrCh' Comandos 'fecCh'
+Comandos = Cmd Comandos
+Comandos = ε
+Cmd = Read
+Cmd = Put
+Cmd = While
+Cmd = If
+Cmd = For
+Cmd = Decl 'SepPtv'
+Cmd = 'id' CmdF 'sepPtv'
+Cmd = 'value' E 'sepPtv'
+Cmd = 'break' 'sepPtv'
+
+Decl = Vetor Tipo 'id' AtbDecl DeclF
+
+
 
 Vector = 'abCol' VectorF
 Vector = ε
@@ -31,9 +41,6 @@ LChamada = ε
 LChamadaF = 'SepVirg' E LChamadaF
 LChamadaF = ε
 
-Escopo = 'abrCh' Comandos 'fecCh'
-
-Decl = Vetor Tipo NomeVar AtbDecl DeclF
 Vetor = 'vector'
 Vetor = ε
 DeclF = 'sepVirg' NomeVar AtbDecl DeclF
@@ -43,18 +50,6 @@ AtbDecl = ε
 Read = 'read' 'abPar' NomeVar 'fecPar' 'sepPtv'
 Put = 'put' 'abPar' LChamada 'fecPar' 'sepPtv'
 
-Comandos = Cmd Comandos
-Comandos = ε
-
-Cmd = Read
-Cmd = Put
-Cmd = Decl 'SepPtv'
-Cmd = While
-Cmd = If
-Cmd = For
-Cmd = 'break' 'sepPtv'
-Cmd = 'id' CmdF 'sepPtv'
-Cmd = 'value' E 'sepPtv'
 
 CmdF = Atribuicao
 CmdF = ChamadaFunc
