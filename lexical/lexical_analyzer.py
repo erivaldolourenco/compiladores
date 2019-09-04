@@ -3,6 +3,7 @@ from .token import Token
 from .category_token import Category
 from .lexical_table import LexicalTable
 import linecache
+import re
 
 position = [0,0]
 class Lexeme(object):
@@ -16,9 +17,11 @@ class Lexeme(object):
     def nextToken(self):
         
         lexema = ''
-
+        # print(position[0])
+        # print(position[1])
+        # print(self.line[self.ncolumn-4])
         for i in range(self.ncolumn, int(self.line.__len__())):
-
+            # print(self.line[i])
             if (self.line[i] != ' '):
                 lexema += self.line[i]
                 
@@ -226,39 +229,25 @@ class Lexeme(object):
                 self.ncolumn += 1
                 return token
 
-            elif self.line[i] == '.':
-                # position[0] = self.nline
-                # position[1] = self.ncolumn
-                # token = Token(lexema, Category.SIMPLE_ASP, position)
-                
-                # return token
-                lexema += self.line[i]
-                print(lexema)
-                self.ncolumn += 1
-            
-            #Pegar palavra reservada
             elif self.line[i].isalnum():
-                # if self.line[i] == '.':
-                #     lexema = self.line[i]
-                if LexicalTable.isSpecial(self.line[i + 1]):
-                    if lexema.isdigit():
-                        position[0] = self.nline
-                        position[1] = self.ncolumn
-                        if LexicalTable.isSpecial(self.line[i + 1]):
-                            token = Token(lexema, Category.CONST_INT, position)
-                            self.ncolumn += 1
-                            return token
+                j = i
+                lexema = ''
+                while not LexicalTable.isSpecial(self.line[j]):
+                    lexema += self.line[j]
+                    j += 1
+                self.ncolumn = j
+                position[0] = self.nline
+                position[1] = self.ncolumn
+                try:
+                    token = Token(lexema, LexicalTable().lexical_table[lexema], position)
+                except Exception as e:
+                    if bool(re.search(r'\d.\d', lexema)):
+                        token = Token(lexema, Category.CONST_FLO, position)
+                    elif lexema.isdigit():
+                        token = Token(lexema, Category.CONST_INT, position)
                     else:
-                        position[0] = self.nline
-                        position[1] = self.ncolumn
-                        try:
-                            token = Token(lexema, LexicalTable().lexical_table[lexema], position)
-                        except Exception as e:
-                            token = Token(lexema, Category.ID, position)
-                        self.ncolumn += 1
-                        return token
-                else:
-                    self.ncolumn += 1
+                        token = Token(lexema, Category.ID, position)
+                return token
 
             elif self.line[i] == '\t':
                 self.ncolumn += 3
