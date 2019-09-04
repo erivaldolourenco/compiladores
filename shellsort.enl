@@ -26,8 +26,9 @@ function vector shellSort(int vet, int size) {
 void begin()
 {
   
-   vector int vetor[10], tam = 10;
+   vector int vetor[10];
    vector int newvetor[10];
+   int tam=10;
    for(int i = 0; tam; 1){
         read('%d', vetor[i]);
    }

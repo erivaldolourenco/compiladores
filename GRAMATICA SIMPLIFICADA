@@ -12,6 +12,10 @@ Tipo = 'cchar'
 Tipo = 'char'
 Tipo = 'bool'
 Tipo = 'void'
+
+
+
+
 Escopo = 'abrCh' Comandos 'fecCh'
 Comandos = Cmd Comandos
 Comandos = ε
@@ -25,11 +29,10 @@ Cmd = 'id' CmdF 'sepPtv'
 Cmd = 'value' E 'sepPtv'
 Cmd = 'break' 'sepPtv'
 
-Decl = Vetor Tipo 'id' AtbDecl DeclF
+Decl = Vetor 
+Decl = Tipo 'id' AtbDecl DeclF
 
-
-
-Vector = 'abCol' VectorF
+Vector = 'vector' 'id' 'abCol' VectorF
 Vector = ε
 VectorF = E 'fecCol'
 VectorF = 'fecCol'
