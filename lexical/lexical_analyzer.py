@@ -27,6 +27,18 @@ class Lexeme(object):
                 self.ncolumn += 1
                 pass
 
+            elif self.line[i-1] == "'" and self.line[i-2] == "(":
+                j=i
+                lexema = ''
+                while self.line[j] != "'":
+                    lexema += self.line[j] 
+                    j+=1
+                position[0] = self.nline
+                position[1] = self.ncolumn
+                token = Token(lexema, Category.CAD_CARACTER, position)
+                self.ncolumn = j
+                return token
+
             elif self.line[i] == '+':
                 if self.line[i + 1] == '+':
                     lexema += self.line[i + 1]
@@ -214,17 +226,28 @@ class Lexeme(object):
                 self.ncolumn += 1
                 return token
 
+            elif self.line[i] == '.':
+                # position[0] = self.nline
+                # position[1] = self.ncolumn
+                # token = Token(lexema, Category.SIMPLE_ASP, position)
+                
+                # return token
+                lexema += self.line[i]
+                print(lexema)
+                self.ncolumn += 1
+            
             #Pegar palavra reservada
             elif self.line[i].isalnum():
-                # if self.line[i-1] == "'":
-                #     print "TESTE"
+                # if self.line[i] == '.':
+                #     lexema = self.line[i]
                 if LexicalTable.isSpecial(self.line[i + 1]):
                     if lexema.isdigit():
                         position[0] = self.nline
                         position[1] = self.ncolumn
-                        token = Token(lexema, Category.CONST, position)
-                        self.ncolumn += 1
-                        return token
+                        if LexicalTable.isSpecial(self.line[i + 1]):
+                            token = Token(lexema, Category.CONST_INT, position)
+                            self.ncolumn += 1
+                            return token
                     else:
                         position[0] = self.nline
                         position[1] = self.ncolumn

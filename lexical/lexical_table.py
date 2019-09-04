@@ -65,7 +65,7 @@ class LexicalTable(object):
 
     @classmethod
     def isSpecial(self, caracter):
-        special = [' ', ',', '(', ')', '{', '}', '[', ']', ';', '+', '-',
+        special = [' ', ',', '(', ')', '{', '}', '[', ']', ';', '+', '-', 
                    '*', '/', '%', '|', '=', "'", '\t', '\n', '&', '>', '<', '!', '#','$']
         return caracter in special
 
