@@ -13,9 +13,6 @@ Tipo = 'char'
 Tipo = 'bool'
 Tipo = 'void'
 
-
-
-
 Escopo = 'abrCh' Comandos 'fecCh'
 Comandos = Cmd Comandos
 Comandos = ε
