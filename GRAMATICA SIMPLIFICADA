@@ -1,17 +1,26 @@
 Programa = Funcao Begin
-Funcao = 'function' Tipo 'id' 'abrPar' LParam 'fecPar' Escopo
+Funcao = 'function' Vector Tipo NomeVar 'abrPar' LParam 'fecPar' Escopo
 Funcao = ε
 Begin = 'void' 'begin' 'abPar' LParam 'fecPar' Escopo
-LParam = Tipo 'id' LParamF
+
+NomeVar = 'id' VectorF
+Vector = 'vector' VectorF
+Vector = ε
+VectorF = 'abrCoc' 'CTEINT' 'feccoc'
+Vectorf = ε
+
+LParam = Tipo NomeVar LParamF
 LParam = ε
-LParamF = 'sepVirg' Tipo 'id' LparamF
+LParamF = 'sepVirg' Tipo NomeVar LparamF
 LparamF = ε
+
 Tipo = 'int'
 Tipo = 'float'
 Tipo = 'cchar'
 Tipo = 'char'
 Tipo = 'bool'
 Tipo = 'void'
+
 
 Escopo = 'abrCh' Comandos 'fecCh'
 Comandos = Cmd Comandos
@@ -23,17 +32,16 @@ Cmd = If
 Cmd = For
 Cmd = Decl 'SepPtv'
 Cmd = 'id' CmdF 'sepPtv'
-Cmd = 'value' E 'sepPtv'
 Cmd = 'break' 'sepPtv'
+Cmd = 'value' E 'sepPtv' // corrigir
 
-Decl = Vetor 
-Decl = Tipo 'id' AtbDecl DeclF
-
-Vector = 'vector' 'id' 'abCol' VectorF
+Decl = Vector Tipo 'id' VectorF AtbDecl DeclF
+Vector = 'vector'
 Vector = ε
-VectorF = E 'fecCol'
-VectorF = 'fecCol'
-NomeVar = 'id' Vector
+VectorF = 'ABRCOC' 'CTEINT' 'FECCOC'
+Vectorf = ε
+DeclF = 'SEPVIRG' Decl
+Declf = ε
 
 ChamadaFunc = 'abrPar' LChamada 'fecPar'
 LChamada = E LChamadaF

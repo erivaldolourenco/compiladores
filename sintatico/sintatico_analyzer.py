@@ -14,283 +14,335 @@ class Sintatico(object):
 
 
     def erro(self):
+        print("ERRO")
         print(self.token.printToken())
         exit()
 
     def programa(self):
-        if self.token is not None:
-            self.funcao()
-            self.begin()
-        else:
-            print("SEM ERROS DE SINTAXE :)")
-        
+        self.funcao()
+        self.begin()
+        print("It´s work!!!")
         # verificar se esta lendo um self.token ou se eh None
+
+    def printToken(self):
+        print(self.token.printToken())
 
     def funcao(self):
 
         if (self.token.category == Category.FUNCTION):
-            # print("FUNCAO")
+            self.printToken()
             self.token = self.lex.nextToken()
-            self.tipo()
 
-            if self.token.category == Category.ID:
-                # print("ID")
+            self.vector()
 
-                self.token = self.lex.nextToken()
-
-                if self.token.category == Category.ABR_PAR:
-                    # print("ABRE PARENTES")
-                    self.token = self.lex.nextToken()
-                    self.l_param()
-                    # print("CHAMOU L_PARAM")
-                else:
-                    print("ERRO: ABRPAR ESPERADO")
-                    self.erro()
-                if self.token.category == Category.FEC_PAR:
-                    # print("FECHA PARAM")
-                    self.token = self.lex.nextToken()
-                    self.escopo()
-                else:
-                    print("ERRO: FEC_PAR ESPERADO")
-                    self.erro()
-            else:
-                print("ERRO: ID ESPERADO")
+            if self.tipo() == 1:
                 self.erro()
+
+            self.nomeVar()
+
+            if self.token.category == Category.ABR_PAR:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                    self.erro()
+
+            self.l_param()
+
+            if self.token.category == Category.FEC_PAR:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            self.escopo()
+
         else:
             pass
             # print("FUNCAO VAZIO")
             # self.erro()
 
     def begin(self):
-        print("=== BEGIN ===")
+
         if self.token.category == Category.VOID:
+            self.printToken()
             self.token = self.lex.nextToken()
-            # print("BEGIN VOID")
+
             if self.token.category == Category.BEGIN:
-                # print("BEGIN")
+                self.printToken()
                 self.token = self.lex.nextToken()
 
                 if self.token.category == Category.ABR_PAR:
-                    # print("ABR_PAR")
+                    self.printToken()
                     self.token = self.lex.nextToken()
-                    if self.token.category == Category.FEC_PAR:
-                        self.token = self.lex.nextToken()
-                        # print("FEC_PAR")
-                        self.escopo()
-                    else:
-                        # print("LPARAM")
-                        self.l_param()
-                        if self.token.category == Category.FEC_PAR:
-                            self.token = self.lex.nextToken()
-                            self.escopo()
-                        else:
-                            print("ERRO: FECPAR ESPERADO")
-                            self.erro()
-                else:
-                    print("ERRO: ABR_PAR ESPERADO")
-                    self.erro()
 
-            
+                    if self.token.category == Category.FEC_PAR:
+                        self.printToken()
+                        self.token = self.lex.nextToken()
+                        self.escopo()
+
+                    else:
+                        self.erro()
+                else:
+                    self.erro()
             else:
-                print("ERRO: BEGIN ESPERADO")
                 self.erro()
         else:
-            print("ERRO: VOID ESPERADO")
             self.erro()
+
+    def nomeVar(self):
+        if self.token.category == Category.ID:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.vector_f()
+        else:
+            self.erro()
+
+    def vector(self):
+        if self.token.category == Category.VECTOR:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.vector_f()
+        else:
+            return 1
+
+    def vector_f(self):
+        if self.token.category == Category.ABR_COC:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.e()
+
+            if self.token.category == Category.FEC_COC:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+
+
+        else:
+            return 1
+
+
 
     def l_param(self):
+
+        self.vector()
         self.tipo()
-        if self.token.category == Category.ID:
-            self.token = self.lex.nextToken()
-            self.l_paramf()
-        else:
-            print("ERRO: ID ESPERADO")
-            self.erro()
+        self.nomeVar()
+        self.l_paramf()
 
     def l_paramf(self):
-        # print(self.token.category)
         if self.token.category == Category.SEP_VIRG:
+            self.printToken()
             self.token = self.lex.nextToken()
-            self.tipo()
-            if self.token.category == Category.ID:
-                self.token = self.lex.nextToken()
-                self.l_paramf()
-        else:
-            if self.token.category == Category.FEC_PAR:
-                # print("FECHA CHAVE")
-                pass
-            else:
-                print("ERRO: SEP_VIRG ESPERADO")
-                self.erro()
+            self.l_param()
 
-        
+        else:
+            pass
+            #print vazio
+
     def tipo(self):
-        print("=== TIPO ===")
-        # print(self.token.printToken())
+
         if self.token.category == Category.INT:
+            self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.FLOAT:
+            self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.BOOL:
+            self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CHAR:
+            self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CCHAR:
-            self.token = self.lex.nextToken()
-
-        elif self.token.category == Category.VOID:
+            self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.VECTOR:
+            self.printToken()
             self.token = self.lex.nextToken()
+
+        elif self.token.category == Category.VOID:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
         else:
-            return False
-            # print("ERROR: ESPERADO UM TIPO [int,float,cchar,char,bool,void]")
-            # self.erro()
+            return 1
         
     def escopo(self):
-        print("=== ESCOPO ===")
         if self.token.category == Category.ABR_CH:
+            self.printToken()
             self.token = self.lex.nextToken()
-            # print("TESTANDO COMANDOS")
-            self.comandos()
-            
         else:
-            print("ERRO: ABR_CH ESPERADO")
             self.erro()
 
+        self.comandos()
+
         if self.token.category == Category.FEC_CH:
+            self.printToken()
             self.token = self.lex.nextToken()
-            self.programa()
+
         else:
-            print("ERRO: FEC_CH ESPERADO")
             self.erro()
 
     def comandos(self):
-        print("=== COMANDOS ===")
-        self.cmd()
-        # self.comandos()
+        if self.cmd() == 1:
+            #print vazio
+            pass
+
+        else:
+            self.comandos()
+
 
     def cmd(self):
-        print("=== CMD ===")
-        self.decl()
-        self._put()
-        self._while()
-        
+        if self.token.category == Category.READ:
+            self.read()
 
-    def cmd_f(self):
-        print("=== CMD_F ===")
+        elif self.token.category == Category.PUT:
+            self.put()
 
-    def decl(self):
-        print("=== DECL ===")
-        if self.tipo() is None:
-            self.tipo()
-            self.nome_var()
-            self.atb_decl()
-            self.decl_f()
-        else: 
-            pass
+        elif self.token.category == Category.WHILE:
+            self._while()
 
-    def decl_f(self):
-        print("=== DECL_F ===")
-        if self.token.category == Category.SEP_P_VIRG:
+        elif self.token.category == Category.IF:
+            self._if()
+
+        elif self.token.category == Category.FOR:
+            self._for()
+
+        elif self.token.category == Category.ID:
+            self.printToken()
             self.token = self.lex.nextToken()
-        else:
-            print("ERRO: SEP_VIRG ESPERADO")
-            self.erro()
+            self.cmd_f()
 
-        # print(self.tipo())
-        if self.tipo() is None:
-            self.tipo()
-            self.nome_var()
-            self.atb_decl()
-            self.decl_f()
-        else: 
-            pass
-
-    def atb_decl(self):
-        print("=== ATB_DECL ===")
-        if self.token.category == Category.ATRIBUICAO:
-            self.token = self.lex.nextToken()
-            self.atb_const()
-        elif self.token.category is not Category.SEP_P_VIRG:
-            print("ERRO: ATRIBUICAO ESPERADO")
-            self.erro()
-
-
-    def atb_const(self):
-        print("=== ATB_CONST ===")
-        if self.token.category == Category.CAD_CARACTER:
-            self.token = self.lex.nextToken()
-        elif self.token.category == Category.CONST_INT:
-            self.token = self.lex.nextToken()
-        elif self.token.category == Category.CONST_FLO:
-            self.token = self.lex.nextToken()
-        elif self.token.category == Category.CONST_CHA:
-            self.token = self.lex.nextToken()
-        elif self.token.category == Category.CONST_CCHAR:
-            self.token = self.lex.nextToken()
-        elif self.token.category == Category.CONST_BOOL:
-            self.token = self.lex.nextToken()
-        else:
-            print("ERRO: CONSTANTE ESPERADO")
-            self.erro()
-
-    def nome_var(self):
-        print("=== NOME_VAR ===")
-        if self.token.category == Category.ID:
-            self.token = self.lex.nextToken()
-        else:
-            print("ERRO: ID ESPERADO")
-            self.erro()
-
-
-
-
-    def vector(self):
-        if self.token.category == Category.ABR_COC:
-            self.token = self.lex.nextToken()
-        else:
-            print("EPSILON")
-
-        self.vector_f()
-
-
-    def vector_f(self):
-        if self.token.category == Category.FEC_COC:
-            self.token = self.lex.nextToken()
-        else:
-            self.e()
-            if self.token.category == Category.ABR_COC:
+            if self.token.category == Category.SEP_P_VIRG:
+                self.printToken()
                 self.token = self.lex.nextToken()
             else:
-                print("ERRO: FEC_COC ESPERADO")
+                self.erro()
+
+
+        elif self.token.category == Category.VECTOR:
+            self.vectorDecl()
+            if self.token.category == Category.SEP_P_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+        elif self.tipo() != 1:
+            self.decl()
+
+            if self.token.category == Category.SEP_P_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+        elif self.token.category == Category.BREAK:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+            if self.token.category == Category.SEP_P_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+
+            else:
+                self.erro()
+
+        elif self.token.category == Category.RETURN:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+            self.e()
+
+            if self.token.category == Category.SEP_P_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+
+            else:
                 self.erro()
 
 
 
 
-        
+
+        else:
+            return 1
 
 
+    def vectorDecl(self):
+        if self.token.category == Category.VECTOR:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+            if self.tipo() == 1:
+                self.erro()
+            else:
+                self.nomeVar()
+                self.atb_decl()
+                #self.decl_f()
+        else:
+            self.erro()
+
+    def decl(self):
+        self.nomeVar()
+        self.atb_decl()
+
+
+    def cmd_f(self):
+        if self.token.category == Category.ABR_PAR:
+            self.chamada_func()
+
+        elif self.token.category == Category.ABR_COC:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+
+            self.e()
+
+            if self.token.category == Category.FEC_COC:
+                self.printToken()
+                self.token = self.lex.nextToken()
+                self.atribuicao()
+
+            else:
+                self.erro()
+
+        elif self.token.category == Category.ATRIBUICAO:
+            self.atribuicao()
+
+
+
+    def atribuicao(self):
+        if self.token.category == Category.ATRIBUICAO:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.e()
+        else:
+            pass
+            #print vazio
 
     def chamada_func(self):
 
         if self.token.category == Category.ABR_PAR:
+            self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("ABRPAR esperado")
+            self.erro()
 
         self.l_chamada()
 
         if self.token.category == Category.FEC_PAR:
+            self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("FECPAR esperado")
+            self.erro()
 
     def l_chamada(self):
         self.e()
@@ -300,82 +352,139 @@ class Sintatico(object):
 
         if self.token.category == Category.SEP_VIRG:
             self.token = self.lex.nextToken()
+            self.e()
+            self.l_chamadaf()
         else:
-            print("SEPVIRG Esperado")
+            pass
 
-        self.e()
-        self.l_chamadaf()
 
-    
+    def atb_decl(self):
 
-    
+        if self.token.category == Category.ATRIBUICAO:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.e()
 
-    def _read(self):
-        print("Não implementado ainda")
+        else:
+            #print("EPSILON")
+            pass
 
-    def _put(self):
-        print("=== PUT ===")
-        if self.token.category == Category.PUT:
+    def read(self):
+        if self.token.category == Category.READ:
+            self.printToken()
             self.token = self.lex.nextToken()
 
             if self.token.category == Category.ABR_PAR:
+                self.printToken()
                 self.token = self.lex.nextToken()
+            else:
+                self.erro()
 
-                if self.token.category == Category.SIMPLE_ASP:
-                    self.token = self.lex.nextToken()
+            if self.token.category == Category.SIMPLE_ASP:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
 
-                    if self.token.category == Category.CAD_CARACTER:
-                        self.token = self.lex.nextToken()
+            if self.token.category == Category.CAD_CARACTER:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
 
-                        if self.token.category == Category.SIMPLE_ASP:
-                            self.token = self.lex.nextToken()
+            if self.token.category == Category.SIMPLE_ASP:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
 
-                            if self.token.category == Category.FEC_PAR:
-                                self.token = self.lex.nextToken()
+            if self.token.category == Category.FEC_PAR:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
 
-                                if self.token.category == Category.SEP_P_VIRG:
-                                    self.token = self.lex.nextToken()
-                                    pass
-                                else:
-                                    print("ERRO: SEP_P_VIRG ESPERADO")
-                                    self.erro()
-                            else:
-                                print("ERRO: FEC_PAR ESPERADO")
-                                self.erro()
-                        else:
-                            print("ERRO: SIMPLE_ASP ESPERADO")
-                            self.erro()
-                    else:
-                        print("ERRO: CAD_CARACTER ESPERADO")
-                        self.erro()
-                else:
-                    print("ERRO: SIMPLE_ASP ESPERADO")
-                    self.erro()
+            if self.token.category == Category.SEP_P_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
 
-
-    def atribuicao(self):
-        if self.token.category == Category.ATRIBUICAO:
-            self.token = self.lex.nextToken()
         else:
-            print("Atribuicao esperado")
-        self.e()
+            self.erro()
+
+
+    def put(self):
+        if self.token.category == Category.PUT:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+
+            if self.token.category == Category.ABR_PAR:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            if self.token.category == Category.SIMPLE_ASP:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+
+
+            if self.token.category == Category.CAD_CARACTER:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            if self.token.category == Category.SIMPLE_ASP:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            if self.token.category == Category.FEC_PAR:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            if self.token.category == Category.SEP_P_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+        else:
+            self.erro()
 
 
     def _while(self):
+
         if self.token.category == Category.WHILE:
+            self.printToken()
             self.token = self.lex.nextToken()
-            if self.token.category == Category.ABR_PAR:
-                self.token = self.lex.nextToken()
-                # self.eb()
-            else:
-                print("ERRO: ABR_PAR ESPERADO")
-                self.erro()
-            if self.token.category == Category.FEC_PAR:
-                self.token = self.lex.nextToken()
-            else:
-                print("ERRO: FECPAR ESPERADO")
-                self.erro()
-            self.escopo()
+        else:
+            print("while esperado")
+
+        if self.token.category == Category.ABR_PAR:
+            self.printToken()
+            self.token = self.lex.nextToken()
+        else:
+            print("ABRPAR esperado")
+
+        self.e()
+
+        if self.token.category == Category.FEC_PAR:
+            self.printToken()
+            self.token = self.lex.nextToken()
+        else:
+            print("FECPAR esperado")
+
+        self.escopo()
 
     def _if(self):
 
@@ -388,8 +497,6 @@ class Sintatico(object):
             self.token = self.lex.nextToken()
         else:
             print("ABRPAR esperado")
-
-        self.e()
 
         if self.token.category == Category.FEC_PAR:
             self.token = self.lex.nextToken()
@@ -410,27 +517,52 @@ class Sintatico(object):
 
     def _for(self):
         if self.token.category == Category.FOR:
-
+            self.printToken()
             self.token = self.lex.nextToken()
+
+
+            if self.token.category == Category.ABR_PAR:
+                self.printToken()
+                self.token = self.lex.nextToken()
+                self.nomeVar()
+
+            else:
+                self.erro()
+
+            if self.token.category == Category.IN:
+                self.printToken()
+                self.token = self.lex.nextToken()
+                self.e()
+
+                if self.token.category == Category.TO:
+                    self.printToken()
+                    self.token = self.lex.nextToken()
+                    self.e()
+
+                    if self.token.category == Category.DO:
+                        self.printToken()
+                        self.token = self.lex.nextToken()
+
+                        if self.token.category == Category.FEC_PAR:
+                            self.printToken()
+                            self.token = self.lex.nextToken()
+                            self.escopo()
+
+
+                        else:
+                            self.erro()
+
+                    else:
+                        self.erro()
+
+                else:
+                    self.erro()
+            else:
+                self.erro()
+
+
         else:
-            print("FOR esperado")
-
-        self.nome_var()
-
-        # if self.token.category == 'IN':
-        #     self.token = self.lex.nextToken()
-        # else:
-        #     print("in esperado")
-
-        # self.e()
-
-        # if self.token.category == 'TO':
-        #     self.token = self.lex.nextToken()
-        # else:
-        #     print("TO esperado")
-
-        self.e()
-        self.escopo()
+            self.erro()
 
 
     def e(self):
@@ -443,11 +575,12 @@ class Sintatico(object):
 
     def ebr(self):
         if self.token.category == Category.OP_OR:
-            self.token = self.lex.nextToken()
+            self.tb()
+            self.tbr()
+
         else:
-            print("OR esperado")
-        self.tb()
-        self.ebr()
+            pass
+
 
     def tb(self):
         self.fb()
@@ -455,111 +588,192 @@ class Sintatico(object):
 
     def tbr(self):
         if self.token.category == Category.OP_AND:
+            self.printToken()
             self.token = self.lex.nextToken()
-        else:
-            print("AND esperado")
+            self.fb()
+            self.tbr()
 
-        self.fb()
-        self.tbr()
+        else:
+            pass
+
+    def fb(self):
+        if self.token.category == Category.OP_NOT:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.relUm()
+
+        else:
+            self.relUm()
+
+    def relUm(self):
+        self.relDois()
+        self.relUmf()
+
+    def relDois(self):
+        self.concat()
+        self.relDoisF()
+
+    def relUmf(self):
+        if self.token.category == Category.OP_MA:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.relDois()
+
+        elif self.token.category == Category.OP_ME:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.relDois()
+
+        elif self.token.category == Category.OP_MAIGU:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.relDois()
+
+        elif self.token.category == Category.OP_MEIGU:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.relDois()
+
+        else:
+            pass
+
+    def relDoisF(self):
+        if self.token.category == Category.OP_MAIGU:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.concat()
+
+        else:
+            pass
+
+    def concat(self):
+        self.ea()
+        self.concatr()
+
+    def concatr(self):
+        if self.token.category == Category.OP_CONC:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.ea()
+            self.concatr()
+        else:
+            pass
 
     def ea(self):
         self.ta()
         self.ear()
 
     def ear(self):
-        self.opa()
-        self.ta()
-        self.ear()
-
-    def ta(self):
-        self.eunario()
-        self.tar()
-
-    def tar(self):
-        self.opm()
-        self.eunario()
-        self.tar()
-
-    def eunario(self):
-        if self.token.category == Category.OP_NOT:
-            self.token = self.lex.nextToken
-            self.fa()
-
+        if self.opa() == 1:
+            pass
         else:
-            self.fa()
-
-    def fa(self):
-        if self.token.category == Category.ABR_PAR:
-            self.token = self.lex.nextToken
-            self.e()
-            if self.token.category == Category.FEC_PAR:
-                self.token = self.lex.nextToken
-            else:
-                print("FECPAR ESPERADO")
-
-        elif self.token.category == Category.CONST_INT:
-            self.token = self.lex.nextToken
-            return
-
-        elif self.token.category == Category.CONST_FLO:
-            self.token = self.lex.nextToken
-            return
-
-        elif self.token.category == Category.CONST_CHA:
-            self.token = self.lex.nextToken
-            return
-
-        elif self.token.category == Category.CONST_CCHAR:
-            self.token = self.lex.nextToken
-            return
-
-        elif self.token.category == Category.TRUE :
-            self.token = self.lex.nextToken
-            return
-
-        elif self.token.category == Category.FALSE:
-            self.token = self.lex.nextToken
-            return
-
-        elif self.token.category == Category.ID:
-            self.id()
-            self.far()
-
-
-        else:
-            print("Erro")
-
-    def far(self):
-        self.chamadaFunc()
+            self.ta()
+            self.ear()
 
     def opa(self):
         if self.token.category == Category.OP_ADD:
-            self.token = self.lex.nextToken
+            self.printToken()
+            self.token = self.lex.nextToken()
 
         elif self.token.category == Category.OP_SUB:
-            self.token = self.lex.nextToken
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+        else :
+            return 1
+
+    def ta(self):
+        self.unario()
+        self.tar()
+
+    def tar(self):
+        if self.opm() == 0:
+            self.unario()
+            self.tar()
+        else:
+            pass
+
+    def unario(self):
+        if self.token.category == Category.OP_UNA:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.fa()
 
         else:
-            print("OPADD ou OPSUB esperado")
+            self.fa()
 
     def opm(self):
         if self.token.category == Category.OP_MULT:
-            self.token = self.lex.nextToken
+            self.printToken()
+            self.token = self.lex.nextToken()
+            return 0
 
         elif self.token.category == Category.OP_DIV:
-            tself.token = self.lex.nextToken
+            self.printToken()
+            self.token = self.lex.nextToken()
+            return 0
 
-        elif self.token.category == Category.OP_RET:
-            tself.token = self.lex.nextToken
+        elif self.token.category == Category.OP_MULT:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            return 0
 
         else:
-            print("OPMULTI OU OPDIV OU OPRET esperado")
+            return 1
 
-    def id(self):
-        if self.token.category == Category.ID:
-            self.token = self.lex.nextToken
+    def fa(self):
+        if self.token.category == Category.CONST_INT:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+        elif self.token.category == Category.CONST_FLO:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+        elif self.token.category == Category.CONST_CHA:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+        elif self.token.category == Category.CONST_CCHAR:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+        elif self.token.category == Category.TRUE:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+        elif self.token.category == Category.FALSE:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+        elif self.token.category == Category.ID:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.far()
+
+    def far(self):
+        if self.token.category == Category.ABR_PAR:
+            self.chamada_func()
+
         else:
-            print("ID esperado")
-            self.erro()
+            self.vector_f()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

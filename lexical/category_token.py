@@ -83,5 +83,8 @@ class Category(Enum):
     CONST_CCHAR = 51
     CONST_BOOL = 52
 
+    IN = 53
+    TO = 54
+    DO = 55
 
     UNKNOWN = 60

@@ -1,4 +1,4 @@
-function vector shellSort(int vet, int size) {
+function vector int shellSort(vector int vet, int size) {
    int value;
    int j;
 
@@ -7,7 +7,7 @@ function vector shellSort(int vet, int size) {
        gap = 3*gap+1;
    }
    while (gap > 0) {
-       for(int i = gap; size; 1) {
+       for(gap in 1 to size do) {
            value = vet[i];
            j = i;
            while (j > gap-1 && value <= vet[j - gap]) {
@@ -29,14 +29,15 @@ void begin()
    vector int vetor[10];
    vector int newvetor[10];
    int tam=10;
-   for(int i = 0; tam; 1){
-        read('%d', vetor[i]);
+   int i = 0;
+   for(i in 1 to tam do){
+        read('%d , vetor[i]');
    }
   
    newvetor = shellsort(vetor, tam);
 
-   for(int i = 0; tam; 1){
-       put('%d', newvetor[i]);
+   for(i in 1 to tam do){
+       put('%d, newvetor[i]');
    }
   
 }
