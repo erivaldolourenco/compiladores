@@ -9,10 +9,11 @@ Vector = ε
 VectorF = 'abrCoc' 'CTEINT' 'feccoc'
 Vectorf = ε
 
-LParam = Tipo NomeVar LParamF
+LParam = Vector Tipo NomeVar LParamF
 LParam = ε
-LParamF = 'sepVirg' Tipo NomeVar LparamF
-LparamF = ε
+LParamF = 'sepVirg' lparam
+LParamF = ε
+
 
 Tipo = 'int'
 Tipo = 'float'
@@ -30,39 +31,29 @@ Cmd = Put
 Cmd = While
 Cmd = If
 Cmd = For
-Cmd = Decl 'SepPtv'
+Cmd = VectorDecl 'SepPtv'
+Cmd = Tipo Decl 'SepPtv'
 Cmd = 'id' CmdF 'sepPtv'
 Cmd = 'break' 'sepPtv'
-Cmd = 'value' E 'sepPtv' // corrigir
+Cmd = 'return' E 'sepPtv'
 
-Decl = Vector Tipo 'id' VectorF AtbDecl DeclF
-Vector = 'vector'
-Vector = ε
-VectorF = 'ABRCOC' 'CTEINT' 'FECCOC'
-Vectorf = ε
-DeclF = 'SEPVIRG' Decl
-Declf = ε
-
+Decl = NomeVar AtbDecl
+VectorDecl = 'vector' tipo decl
 ChamadaFunc = 'abrPar' LChamada 'fecPar'
 LChamada = E LChamadaF
 LChamada = ε
 LChamadaF = 'SepVirg' E LChamadaF
 LChamadaF = ε
 
-Vetor = 'vector'
-Vetor = ε
-DeclF = 'sepVirg' NomeVar AtbDecl DeclF
-DeclF = ε
 AtbDecl = 'atribuicao' E
 AtbDecl = ε
-Read = 'read' 'abPar' NomeVar 'fecPar' 'sepPtv'
-Put = 'put' 'abPar' LChamada 'fecPar' 'sepPtv'
+Read = 'read' //corrigir
+Put = 'put' //corrigir
 
 
 CmdF = Atribuicao
 CmdF = ChamadaFunc
-CmdF = 'abrCoc' E 'fecCoc' CmdFF
-CmdFF = Atribuicao
+CmdF = 'abrCoc' E 'fecCoc' Atribuicao
 Atribuicao = 'atribuicao' E
 While = 'while' 'abPar' E 'fecPar' Escopo
 If = 'if' 'abPar' E 'fecPar' Escopo Else

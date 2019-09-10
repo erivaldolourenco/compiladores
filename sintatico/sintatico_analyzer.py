@@ -103,6 +103,7 @@ class Sintatico(object):
             self.token = self.lex.nextToken()
             self.vector_f()
         else:
+            #imprimir vazio
             return 1
 
     def vector_f(self):
@@ -120,6 +121,7 @@ class Sintatico(object):
 
 
         else:
+            #printvazio
             return 1
 
 
@@ -160,10 +162,6 @@ class Sintatico(object):
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CCHAR:
-            self.printToken()
-            self.token = self.lex.nextToken()
-
-        elif self.token.category == Category.VECTOR:
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -294,40 +292,6 @@ class Sintatico(object):
         self.nomeVar()
         self.atb_decl()
 
-
-    def cmd_f(self):
-        if self.token.category == Category.ABR_PAR:
-            self.chamada_func()
-
-        elif self.token.category == Category.ABR_COC:
-            self.printToken()
-            self.token = self.lex.nextToken()
-
-
-            self.e()
-
-            if self.token.category == Category.FEC_COC:
-                self.printToken()
-                self.token = self.lex.nextToken()
-                self.atribuicao()
-
-            else:
-                self.erro()
-
-        elif self.token.category == Category.ATRIBUICAO:
-            self.atribuicao()
-
-
-
-    def atribuicao(self):
-        if self.token.category == Category.ATRIBUICAO:
-            self.printToken()
-            self.token = self.lex.nextToken()
-            self.e()
-        else:
-            pass
-            #print vazio
-
     def chamada_func(self):
 
         if self.token.category == Category.ABR_PAR:
@@ -356,7 +320,6 @@ class Sintatico(object):
             self.l_chamadaf()
         else:
             pass
-
 
     def atb_decl(self):
 
@@ -462,6 +425,41 @@ class Sintatico(object):
             self.erro()
 
 
+    def cmd_f(self):
+        if self.token.category == Category.ABR_PAR:
+            self.chamada_func()
+
+        elif self.token.category == Category.ABR_COC:
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+
+            self.e()
+
+            if self.token.category == Category.FEC_COC:
+                self.printToken()
+                self.token = self.lex.nextToken()
+                self.atribuicao()
+
+            else:
+                self.erro()
+
+        elif self.token.category == Category.ATRIBUICAO:
+            self.atribuicao()
+
+
+
+    def atribuicao(self):
+        if self.token.category == Category.ATRIBUICAO:
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.e()
+        else:
+            self.erro()
+
+
+
+
     def _while(self):
 
         if self.token.category == Category.WHILE:
@@ -489,16 +487,19 @@ class Sintatico(object):
     def _if(self):
 
         if self.token.category == Category.IF:
+            self.printToken()
             self.token = self.lex.nextToken()
         else:
             print("if esperado")
 
         if self.token.category == Category.ABR_PAR:
+            self.printToken()
             self.token = self.lex.nextToken()
         else:
             print("ABRPAR esperado")
 
         if self.token.category == Category.FEC_PAR:
+            self.printToken()
             self.token = self.lex.nextToken()
         else:
             print("FECPAR esperado")
@@ -509,6 +510,7 @@ class Sintatico(object):
     def _else(self):
 
         if self.token.category == Category.ELSE:
+            self.printToken()
             self.token = self.lex.nextToken()
         else:
             print("ELSE esperado")
@@ -609,10 +611,6 @@ class Sintatico(object):
         self.relDois()
         self.relUmf()
 
-    def relDois(self):
-        self.concat()
-        self.relDoisF()
-
     def relUmf(self):
         if self.token.category == Category.OP_MA:
             self.printToken()
@@ -636,6 +634,10 @@ class Sintatico(object):
 
         else:
             pass
+
+    def relDois(self):
+        self.concat()
+        self.relDoisF()
 
     def relDoisF(self):
         if self.token.category == Category.OP_MAIGU:
