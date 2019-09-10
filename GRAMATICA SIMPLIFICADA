@@ -6,13 +6,13 @@ Begin = 'void' 'begin' 'abPar' LParam 'fecPar' Escopo
 NomeVar = 'id' VectorF
 Vector = 'vector' VectorF
 Vector = ε
-VectorF = 'abrCoc' 'CTEINT' 'feccoc'
+VectorF = 'abrCoc' e 'feccoc'
 Vectorf = ε
 
 LParam = Vector Tipo NomeVar LParamF
 LParam = ε
 LParamF = 'sepVirg' lparam
-LParamF = ε
+
 
 
 Tipo = 'int'

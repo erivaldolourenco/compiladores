@@ -18,18 +18,21 @@ class Sintatico(object):
         print(self.token.printToken())
         exit()
 
+    def printToken(self):
+        print(self.token.printToken())
+
     def programa(self):
+        print("           Programa = Funcao Begin")
         self.funcao()
         self.begin()
         print("It´s work!!!")
         # verificar se esta lendo um self.token ou se eh None
 
-    def printToken(self):
-        print(self.token.printToken())
-
     def funcao(self):
 
         if (self.token.category == Category.FUNCTION):
+            print("           Funcao = 'function' Vector Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'")
+
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -57,11 +60,10 @@ class Sintatico(object):
             self.escopo()
 
         else:
-            pass
-            # print("FUNCAO VAZIO")
-            # self.erro()
+            print("           Funcao = épsilon")
 
     def begin(self):
+        print("           Begin = 'void' 'begin' 'abrpar' Lparam 'fecpar' Escopo")
 
         if self.token.category == Category.VOID:
             self.printToken()
@@ -90,6 +92,7 @@ class Sintatico(object):
             self.erro()
 
     def nomeVar(self):
+        print("           NomeVar = 'id' VectorF")
         if self.token.category == Category.ID:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -99,15 +102,17 @@ class Sintatico(object):
 
     def vector(self):
         if self.token.category == Category.VECTOR:
+            print("           Vector = 'vector' Vectorf")
             self.printToken()
             self.token = self.lex.nextToken()
             self.vector_f()
         else:
-            #imprimir vazio
+            print("           Vector = épsilon")
             return 1
 
     def vector_f(self):
         if self.token.category == Category.ABR_COC:
+            
             self.printToken()
             self.token = self.lex.nextToken()
             self.e()
