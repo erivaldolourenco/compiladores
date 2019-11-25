@@ -1,43 +1,59 @@
-function vector int shellSort(vector int vet, int size) {
-   int value;
-   int j;
+function vector int shellSort(vector int vet, int tamanho) 
+{
+   int i, j, value;
+   int h = 1;
+   
+   while(h < tamanho)
+   {
+        h = 3 * h + 1;
+   }
+   
 
-   int gap = 1;
-   while(gap < size) {
-       gap = 3*gap+1;
-   }
-   while (gap > 0) {
-       for(gap in 1 to size do) {
-           value = vet[i];
-           j = i;
-           while (j > gap-1 && value <= vet[j - gap]) {
-               vet[j] = vet [j - gap];
-               j = j - gap;
-           }
-           vet [j] = value;
+   while (h > 0)
+   {
+
+       for (i in h to tamanho do)
+       {
+            value = vet[i];
+            j = i;
+            while (j > h-1 && value <= vet[j - h]) 
+            {
+                vet[j] = vet [j - h];
+                j = j - h;
+            }
+            vet[j] = value;
        }
-       gap = gap/3;
+       h = h/3;
    }
-  
    return vet;
 }
+       
 
+   
 
+  
 void begin()
 {
   
-   vector int vetor[10];
-   vector int newvetor[10];
-   int tam=10;
-   int i = 0;
+   vector int vetor[1000];
+   vector int newvetor[1000];
+   int tam;
+    
+   read('%d', tam);
+  
    for(i in 1 to tam do){
-        read('%d , vetor[i]');
+        read('%d' , vetor[i]);
+   }
+   
+    
+   for(i in 1 to tam do){
+       put('%d', vetor[i]);
    }
   
    newvetor = shellsort(vetor, tam);
 
    for(i in 1 to tam do){
-       put('%d, newvetor[i]');
+       put('%d', newvetor[i]);
    }
   
 }

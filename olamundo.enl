@@ -1,4 +1,4 @@
 ﻿void begin()
 {
-put('Ola mundo');
+    put('%s','Ola mundo');
 }
