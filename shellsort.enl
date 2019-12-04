@@ -1,4 +1,4 @@
-function vector int shellSort(vector int vet, int tamanho) 
+function void shellSort(vector int vet, int tamanho) 
 {
    int i, j, value;
    int h = 1;
@@ -36,7 +36,6 @@ void begin()
 {
   
    vector int vetor[1000];
-   vector int newvetor[1000];
    int tam;
     
    read('%d', tam);
@@ -44,16 +43,15 @@ void begin()
    for(i in 1 to tam do){
         read('%d' , vetor[i]);
    }
-   
-    
+
    for(i in 1 to tam do){
        put('%d', vetor[i]);
    }
   
-   newvetor = shellsort(vetor, tam);
+   vetor = shellsort(vetor, tam);
 
    for(i in 1 to tam do){
-       put('%d', newvetor[i]);
+       put('%d', vetor[i]);
    }
   
 }
