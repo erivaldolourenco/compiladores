@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import sys
 from lexical.lexical_analyzer import Lexeme
-from sintatico.sintatico_analyzer import Sintatico   
+# from sintatico.sintatico_analyzer import Sintatico   
 
 
 file = sys.argv[2]
 op = sys.argv[1]
-print("teste")
 
 if op == "-l":
     print("INCIANDO...")
