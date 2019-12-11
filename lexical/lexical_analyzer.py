@@ -13,13 +13,13 @@ class Lexeme(object):
         self.nline = 1
         self.ncolumn = 0
         self.line = linecache.getline(self.file, self.nline)
-
+        print(str(self.nline).zfill(4)+"  "+str(self.line))
     def nextToken(self):
         
         lexema = ''
         # print(position[0])
         # print(position[1])
-        # print(self.line[self.ncolumn-4])
+        
         for i in range(self.ncolumn, int(self.line.__len__())):
             # print(self.line[i])
             if (self.line[i] != ' '):
@@ -256,6 +256,7 @@ class Lexeme(object):
                 self.ncolumn = 0
                 self.nline += 1
                 self.line = linecache.getline(self.file, self.nline)
+                print(str(self.nline).zfill(4)+"  "+str(self.line))
                 return self.nextToken()
 
             else:
