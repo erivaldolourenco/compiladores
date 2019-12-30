@@ -13,7 +13,7 @@ class Lexeme(object):
         self.nline = 1
         self.ncolumn = 0
         self.line = linecache.getline(self.file, self.nline)
-        print(str(self.nline).zfill(4)+"  "+str(self.line))
+        print(str(self.nline).ljust(4)+"  "+str(self.line), end='')
     def nextToken(self):
         
         lexema = ''
@@ -230,6 +230,20 @@ class Lexeme(object):
                 return token
 
             elif self.line[i].isalnum():
+
+                if self.line[i-1] == "'":
+                    lexema = ''
+                    k = i
+                    while self.line[k] is not "'":
+                        # print(self.line[k])
+                        lexema += self.line[k]
+                        token = Token(lexema, Category.CAD_CARACTER, position)
+                        k += 1
+                    self.ncolumn = k
+                    position[0] = self.nline
+                    position[1] = self.ncolumn
+                    return token
+                    
                 j = i
                 lexema = ''
                 while not LexicalTable.isSpecial(self.line[j]):
@@ -256,7 +270,7 @@ class Lexeme(object):
                 self.ncolumn = 0
                 self.nline += 1
                 self.line = linecache.getline(self.file, self.nline)
-                print(str(self.nline).zfill(4)+"  "+str(self.line))
+                print(str(self.nline).ljust(4)+"  "+str(self.line),end='')
                 return self.nextToken()
 
             else:
