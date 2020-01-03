@@ -1,6 +1,11 @@
-#Projeto Compiladores (IFAL-IC)
+# Projeto Compiladores (IFAL-IC)
+###### Professor
+- Alcino Dall Ignal
+###### Alunos
+- Erivaldo Lourenço 
+- Thiago
 
-###Instalação
+### Instalação
 ```sh
 virtualenv env --python=python3
 source env/bin/activate
