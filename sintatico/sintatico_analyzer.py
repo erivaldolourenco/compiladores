@@ -731,7 +731,7 @@ class Sintatico(object):
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.OP_SUB:
-            print("           Opa = 'opSub')
+            print("           Opa = 'opSub'")
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -826,7 +826,7 @@ class Sintatico(object):
             print("           Far = 'abrPar' ChamadaFuncao")
             self.chamada_func()
 
-        else
+        else:
             print("           Far = VectorF")
             self.vector_f()
 

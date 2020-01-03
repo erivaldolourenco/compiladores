@@ -5,37 +5,39 @@ from .lexical_table import LexicalTable
 import linecache
 import re
 
-position = [0,0]
+position = [0, 0]
+
+
 class Lexeme(object):
-    
+
     def __init__(self, file):
         self.file = file
         self.nline = 1
         self.ncolumn = 0
         self.line = linecache.getline(self.file, self.nline)
-        print(str(self.nline).ljust(4)+"  "+str(self.line), end='')
+        print(str(self.nline).ljust(4) + "  " + str(self.line), end='')
+
     def nextToken(self):
-        
+
         lexema = ''
         # print(position[0])
         # print(position[1])
-        
+
         for i in range(self.ncolumn, int(self.line.__len__())):
             # print(self.line[i])
-            if (self.line[i] != ' '):
+            if self.line[i] != ' ':
                 lexema += self.line[i]
-                
 
             if self.line[i] == ' ':
                 self.ncolumn += 1
                 pass
 
-            elif self.line[i-1] == "'" and self.line[i-2] == "(":
-                j=i
+            elif self.line[i - 1] == "'" and self.line[i - 2] == "(":
+                j = i
                 lexema = ''
                 while self.line[j] != "'":
-                    lexema += self.line[j] 
-                    j+=1
+                    lexema += self.line[j]
+                    j += 1
                 position[0] = self.nline
                 position[1] = self.ncolumn
                 token = Token(lexema, Category.CAD_CARACTER, position)
@@ -90,7 +92,7 @@ class Lexeme(object):
                 position[1] = self.ncolumn
                 token = Token(lexema, Category.OP_RET, position)
                 self.ncolumn += 1
-                return token                    
+                return token
             elif self.line[i] == '>':
                 if self.line[i + 1] == '=':
                     lexema += self.line[i + 1]
@@ -231,9 +233,10 @@ class Lexeme(object):
 
             elif self.line[i].isalnum():
 
-                if self.line[i-1] == "'":
+                if self.line[i - 1] == "'":
                     lexema = ''
                     k = i
+                    token = None
                     while self.line[k] is not "'":
                         # print(self.line[k])
                         lexema += self.line[k]
@@ -243,7 +246,7 @@ class Lexeme(object):
                     position[0] = self.nline
                     position[1] = self.ncolumn
                     return token
-                    
+
                 j = i
                 lexema = ''
                 while not LexicalTable.isSpecial(self.line[j]):
@@ -270,7 +273,7 @@ class Lexeme(object):
                 self.ncolumn = 0
                 self.nline += 1
                 self.line = linecache.getline(self.file, self.nline)
-                print(str(self.nline).ljust(4)+"  "+str(self.line),end='')
+                print(str(self.nline).ljust(4) + "  " + str(self.line), end='')
                 return self.nextToken()
 
             else:
