@@ -1,4 +1,4 @@
-# Projeto Compiladores (IFAL-IC)
+# Projeto Compiladores (UFAL-IC)
 ###### Professor
 - Alcino Dall Ignal
 ###### Alunos
