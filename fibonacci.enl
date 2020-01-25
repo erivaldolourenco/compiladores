@@ -1,39 +1,36 @@
-
 function void fibonacci(int num)
 {
-  int i, j, t, k;
+  int i, j, t;
   j = 1;
-  k = 1;
   i = 0;
+  t = 1;
   
-  if (num <= 0)
+  if (num < 0)
   {
-      put('%s', 'Não é possível fazer uma sequencia fibonacci');
+      put("%s", "Não é possível fazer uma sequencia fibonacci");
   }
-
+  
   else
   {
-      put('%d', 1);
-
-      while(k <= num)
-      {
-           t = i + j;
-           i = j;
-           j = t;
+      put("%d", 0);
+      while (t <= num)
+          {
+              put(", %d", t);
+              t = i + j;
+              i = j;
+              j = t;
+              
+          }
       
-           if(j <= num)
-           {
-               put(', %d', j);
-           }
-           k = k + 1;
-      }
+      
+      
   }
  
 }
 
-void main()
+void begin()
 {
    int num;
-   read('%d', num);
+   read("%d", &num);
    fibonacci(num);
 }

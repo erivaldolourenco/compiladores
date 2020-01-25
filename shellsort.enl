@@ -35,23 +35,24 @@ function void shellSort(vector int vet, int tamanho)
 void begin()
 {
   
-   vector int vetor[1000];
+   
    int tam;
-    
    read('%d', tam);
-  
+   vector int vetor[tam];
+   
+
    for(i in 1 to tam do){
         read('%d' , vetor[i]);
    }
 
    for(i in 1 to tam do){
-       put('%d', vetor[i]);
+       put('%d\n', vetor[i]);
    }
   
    vetor = shellsort(vetor, tam);
 
    for(i in 1 to tam do){
-       put('%d', vetor[i]);
+       put('%d\n', vetor[i]);
    }
   
 }
