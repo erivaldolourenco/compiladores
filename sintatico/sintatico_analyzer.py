@@ -19,7 +19,8 @@ class Sintatico(object):
         exit()
 
     def printToken(self):
-        print(self.token.printToken())
+        if self.token.printToken() is not None:
+            self.token.printToken()
 
     def programa(self):
         print("           Programa = Funcao Begin")
