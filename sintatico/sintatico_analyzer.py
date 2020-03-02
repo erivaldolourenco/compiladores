@@ -32,7 +32,7 @@ class Sintatico(object):
     def funcao(self):
 
         if (self.token.category == Category.FUNCTION):
-            print("           Funcao = 'function' Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'")
+            print("               Funcao = 'function' Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'")
 
             self.printToken()
             self.token = self.lex.nextToken()
@@ -60,7 +60,7 @@ class Sintatico(object):
             self.escopo()
 
         else:
-            print("           Funcao = épsilon")
+            print("          Funcao = épsilon")
 
     def begin(self):
         print("          Begin = 'void' 'begin' 'abrpar' 'fecpar' Escopo")
