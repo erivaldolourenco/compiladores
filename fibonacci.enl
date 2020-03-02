@@ -7,15 +7,15 @@ function void fibonacci(int num)
   
   if (num < 0)
   {
-      put("%s", "Não é possível fazer uma sequencia fibonacci");
+      put('%s', 'Não é possível fazer uma sequencia fibonacci');
   }
   
   else
   {
-      put("%d", 0);
+      put('%d', 0);
       while (t <= num)
           {
-              put(", %d", t);
+              put(', %d', t);
               t = i + j;
               i = j;
               j = t;
@@ -31,6 +31,6 @@ function void fibonacci(int num)
 void begin()
 {
    int num;
-   read("%d", &num);
+   read('%d', num);
    fibonacci(num);
 }

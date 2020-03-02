@@ -23,21 +23,20 @@ class Sintatico(object):
             self.token.printToken()
 
     def programa(self):
-        print("           Programa = Funcao Begin")
+        print("          Programa = Funcao Begin")
         self.funcao()
         self.begin()
-        print("It´s work!!!")
+        print("\nIt´s work!!!")
         # verificar se esta lendo um self.token ou se eh None
 
     def funcao(self):
 
         if (self.token.category == Category.FUNCTION):
-            print("           Funcao = 'function' Vector Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'")
+            print("           Funcao = 'function' Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'")
 
             self.printToken()
             self.token = self.lex.nextToken()
 
-            self.vector()
 
             if self.tipo() == 1:
                 self.erro()
@@ -64,7 +63,7 @@ class Sintatico(object):
             print("           Funcao = épsilon")
 
     def begin(self):
-        print("           Begin = 'void' 'begin' 'abrpar' Lparam 'fecpar' Escopo")
+        print("          Begin = 'void' 'begin' 'abrpar' 'fecpar' Escopo")
 
         if self.token.category == Category.VOID:
             self.printToken()
@@ -134,7 +133,7 @@ class Sintatico(object):
 
     def l_param(self):
 
-        print("           Lparam = 'Vector' Tipo NomeVar LparamF")
+        print("           Lparam = Vector Tipo NomeVar LparamF")
 
         self.vector()
         self.tipo()
@@ -149,7 +148,7 @@ class Sintatico(object):
             self.l_param()
 
         else:
-            self.erro()
+            print("           LparamF = épsilon")
 
 
     def tipo(self):
@@ -209,32 +208,37 @@ class Sintatico(object):
             print("           Comandos = épsilon")
 
         else:
-            print("           Comandos = Cmd Comandos")
             self.comandos()
 
 
     def cmd(self):
         if self.token.category == Category.READ:
+            print("           Comandos = Cmd Comandos")
             print("           Cmd = Read")
             self.read()
 
         elif self.token.category == Category.PUT:
+            print("           Comandos = Cmd Comandos")
             print("           Cmd = Put")
             self.put()
 
         elif self.token.category == Category.WHILE:
+            print("           Comandos = Cmd Comandos")
             print("           Cmd = While")
             self._while()
 
         elif self.token.category == Category.IF:
+            print("           Comandos = Cmd Comandos")
             print("           Cmd = IF")
             self._if()
 
         elif self.token.category == Category.FOR:
+            print("           Comandos = Cmd Comandos")
             print("           Cmd = For")
             self._for()
 
         elif self.token.category == Category.ID:
+            print("           Comandos = Cmd Comandos")
             print("           Cmd = 'id' CmdF 'sepPtv'")
             self.printToken()
             self.token = self.lex.nextToken()
@@ -248,7 +252,8 @@ class Sintatico(object):
 
 
         elif self.token.category == Category.VECTOR:
-            print("           Cmd = VectorDecl Tipo Decl")
+            print("           Comandos = Cmd Comandos")
+            print("          Cmd = VectorDecl Tipo Decl")
             self.vectorDecl()
             if self.token.category == Category.SEP_P_VIRG:
                 self.printToken()
@@ -257,7 +262,7 @@ class Sintatico(object):
                 self.erro()
 
         elif self.tipo() != 1:
-            print("           Cmd = Tipo Decl 'SepPtv")
+            print("          Cmd = Tipo Decl 'SepPtv")
             self.decl()
 
             if self.token.category == Category.SEP_P_VIRG:
@@ -267,6 +272,7 @@ class Sintatico(object):
                 self.erro()
 
         elif self.token.category == Category.BREAK:
+            print("           Comandos = Cmd Comandos")
             print("           Cmd = 'break' 'sepptv'")
             self.printToken()
             self.token = self.lex.nextToken()
@@ -279,7 +285,8 @@ class Sintatico(object):
                 self.erro()
 
         elif self.token.category == Category.RETURN:
-            print("           Cmd = 'return' e 'sepPtv")
+            print("         Comandos = Cmd Comandos")
+            print("         Cmd = 'return' e 'sepPtv")
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -291,9 +298,6 @@ class Sintatico(object):
 
             else:
                 self.erro()
-
-
-
 
 
         else:
@@ -318,7 +322,18 @@ class Sintatico(object):
     def decl(self):
         print("           Tipo = NomeVar AtbDecl")
         self.nomeVar()
+        self.declR()
         self.atb_decl()
+
+    def declR(self):
+        if self.token.category == Category.SEP_VIRG:
+            print("           DeclR = 'sepVirg' Decl")
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.decl()
+        else:
+            print("           DeclR = 'épsilon")
+
 
     def chamada_func(self):
         print("           ChamadaFuncao = 'abrPar' Lchamada 'fecPar'")
@@ -363,6 +378,7 @@ class Sintatico(object):
             print("           AtbDecl = épsilon")
 
     def read(self):
+        print("            Read = 'read' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' NomeVar 'fecPar' 'SepPVirg'")
         if self.token.category == Category.READ:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -391,6 +407,14 @@ class Sintatico(object):
             else:
                 self.erro()
 
+            if self.token.category == Category.SEP_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            self.nomeVar()
+
             if self.token.category == Category.FEC_PAR:
                 self.printToken()
                 self.token = self.lex.nextToken()
@@ -408,6 +432,7 @@ class Sintatico(object):
 
 
     def put(self):
+        print("           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg")
         if self.token.category == Category.PUT:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -426,7 +451,6 @@ class Sintatico(object):
                 self.erro()
 
 
-
             if self.token.category == Category.CAD_CARACTER:
                 self.printToken()
                 self.token = self.lex.nextToken()
@@ -438,6 +462,14 @@ class Sintatico(object):
                 self.token = self.lex.nextToken()
             else:
                 self.erro()
+
+            if self.token.category == Category.SEP_VIRG:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            self.putR()
 
             if self.token.category == Category.FEC_PAR:
                 self.printToken()
@@ -451,8 +483,35 @@ class Sintatico(object):
             else:
                 self.erro()
 
+
+
+
+
+
+    def putR(self):
+        if self.token.category == Category.SIMPLE_ASP:
+            print("          Putr = 'simpleAsp' 'cadCaracter' 'simpleAsp'")
+            self.printToken()
+            self.token = self.lex.nextToken()
+
+            if self.token.category == Category.CAD_CARACTER:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
+            if self.token.category == Category.SIMPLE_ASP:
+                self.printToken()
+                self.token = self.lex.nextToken()
+            else:
+                self.erro()
+
         else:
-            self.erro()
+            print("          Putr = E")
+            self.e()
+
+
+
 
 
     def cmd_f(self):
@@ -518,7 +577,7 @@ class Sintatico(object):
         self.escopo()
 
     def _if(self):
-        print("           If = 'if' 'abrPar' e 'fecPar' Escopo Else")
+        print("           If = 'if' 'abrPar' E 'fecPar' Escopo Else")
         if self.token.category == Category.IF:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -530,6 +589,8 @@ class Sintatico(object):
             self.token = self.lex.nextToken()
         else:
             print("ABRPAR esperado")
+
+        self.e()
 
         if self.token.category == Category.FEC_PAR:
             self.printToken()
@@ -830,7 +891,6 @@ class Sintatico(object):
         else:
             print("           Far = VectorF")
             self.vector_f()
-
 
 
 
