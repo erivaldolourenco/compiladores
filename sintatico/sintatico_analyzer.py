@@ -2,28 +2,30 @@
 import sys
 from lexical.lexical_analyzer import Lexeme
 from lexical.category_token import Category
+from tools.tools import Tools
 
 from enum import Enum
 
 
 class Sintatico(object):
 
-    def __init__(self, token, lex):
+    def __init__(self, token, lex,filename):
+        self.filename = filename
         self.token = token
         self.lex = lex
 
 
     def erro(self):
-        print("ERRO")
-        print(self.token.printToken())
+        Tools.print_f("ERRO", self.filename)
+        Tools.print_f(self.token.printToken(self.filename))
         exit()
 
     def printToken(self):
-        if self.token.printToken() is not None:
-            self.token.printToken()
+        if self.token.printToken(self.filename) is not None:
+            self.token.printToken(self.filename)
 
     def programa(self):
-        print("          Programa = Funcao Begin")
+        Tools.print_f("          Programa = Funcao Begin", self.filename)
         self.funcao()
         self.begin()
         print("\nIt´s work!!!")
@@ -32,7 +34,7 @@ class Sintatico(object):
     def funcao(self):
 
         if (self.token.category == Category.FUNCTION):
-            print("               Funcao = 'function' Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'")
+            Tools.print_f("               Funcao = 'function' Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'", self.filename)
 
             self.printToken()
             self.token = self.lex.nextToken()
@@ -60,10 +62,10 @@ class Sintatico(object):
             self.escopo()
 
         else:
-            print("          Funcao = épsilon")
+            Tools.print_f("          Funcao = épsilon", self.filename)
 
     def begin(self):
-        print("          Begin = 'void' 'begin' 'abrpar' 'fecpar' Escopo")
+        Tools.print_f("          Begin = 'void' 'begin' 'abrpar' 'fecpar' Escopo", self.filename)
 
         if self.token.category == Category.VOID:
             self.printToken()
@@ -92,7 +94,7 @@ class Sintatico(object):
             self.erro()
 
     def nomeVar(self):
-        print("           NomeVar = 'id' VectorF")
+        Tools.print_f("           NomeVar = 'id' VectorF", self.filename)
         if self.token.category == Category.ID:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -102,17 +104,17 @@ class Sintatico(object):
 
     def vector(self):
         if self.token.category == Category.VECTOR:
-            print("           Vector = 'vector' Vectorf")
+            Tools.print_f("           Vector = 'vector' Vectorf", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.vector_f()
         else:
-            print("           Vector = épsilon")
+            Tools.print_f("           Vector = épsilon", self.filename)
             return 1
 
     def vector_f(self):
         if self.token.category == Category.ABR_COC:
-            print("           VectorF = 'abrCoc' e 'fecCoc'")
+            Tools.print_f("           VectorF = 'abrCoc' e 'fecCoc'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.e()
@@ -126,14 +128,14 @@ class Sintatico(object):
 
 
         else:
-            print("           VectorF = épsilon")
+            Tools.print_f("           VectorF = épsilon", self.filename)
             return 1
 
 
 
     def l_param(self):
 
-        print("           Lparam = Vector Tipo NomeVar LparamF")
+        Tools.print_f("           Lparam = Vector Tipo NomeVar LparamF", self.filename)
 
         self.vector()
         self.tipo()
@@ -141,45 +143,45 @@ class Sintatico(object):
         self.l_paramf()
 
     def l_paramf(self):
-        print("           LparamF = 'sepVirg' Lparam")
+        Tools.print_f("           LparamF = 'sepVirg' Lparam", self.filename)
         if self.token.category == Category.SEP_VIRG:
             self.printToken()
             self.token = self.lex.nextToken()
             self.l_param()
 
         else:
-            print("           LparamF = épsilon")
+            Tools.print_f("           LparamF = épsilon", self.filename)
 
 
     def tipo(self):
 
         if self.token.category == Category.INT:
-            print("           Tipo = 'int'")
+            Tools.print_f("           Tipo = 'int'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.FLOAT:
-            print("           Tipo = 'Float'")
+            Tools.print_f("           Tipo = 'Float'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.BOOL:
-            print("           Tipo = 'BOOL")
+            Tools.print_f("           Tipo = 'BOOL", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CHAR:
-            print("           Tipo = 'char")
+            Tools.print_f("           Tipo = 'char", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CCHAR:
-            print("           Tipo = 'cchar'")
+            Tools.print_f("           Tipo = 'cchar'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.VOID:
-            print("           Tipo = 'void")
+            Tools.print_f("           Tipo = 'void", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -187,7 +189,7 @@ class Sintatico(object):
             return 1
         
     def escopo(self):
-        print("           Escopo = 'abrCh' Comandos 'FecCh")
+        Tools.print_f("           Escopo = 'abrCh' Comandos 'FecCh", self.filename)
         if self.token.category == Category.ABR_CH:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -205,7 +207,7 @@ class Sintatico(object):
 
     def comandos(self):
         if self.cmd() == 1:
-            print("           Comandos = épsilon")
+            Tools.print_f("           Comandos = épsilon", self.filename)
 
         else:
             self.comandos()
@@ -213,33 +215,33 @@ class Sintatico(object):
 
     def cmd(self):
         if self.token.category == Category.READ:
-            print("           Comandos = Cmd Comandos")
-            print("           Cmd = Read")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("           Cmd = Read", self.filename)
             self.read()
 
         elif self.token.category == Category.PUT:
-            print("           Comandos = Cmd Comandos")
-            print("           Cmd = Put")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("           Cmd = Put", self.filename)
             self.put()
 
         elif self.token.category == Category.WHILE:
-            print("           Comandos = Cmd Comandos")
-            print("           Cmd = While")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("           Cmd = While", self.filename)
             self._while()
 
         elif self.token.category == Category.IF:
-            print("           Comandos = Cmd Comandos")
-            print("           Cmd = IF")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("           Cmd = IF", self.filename)
             self._if()
 
         elif self.token.category == Category.FOR:
-            print("           Comandos = Cmd Comandos")
-            print("           Cmd = For")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("           Cmd = For", self.filename)
             self._for()
 
         elif self.token.category == Category.ID:
-            print("           Comandos = Cmd Comandos")
-            print("           Cmd = 'id' CmdF 'sepPtv'")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("           Cmd = 'id' CmdF 'sepPtv'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.cmd_f()
@@ -252,8 +254,8 @@ class Sintatico(object):
 
 
         elif self.token.category == Category.VECTOR:
-            print("           Comandos = Cmd Comandos")
-            print("          Cmd = VectorDecl Tipo Decl")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("          Cmd = VectorDecl Tipo Decl", self.filename)
             self.vectorDecl()
             if self.token.category == Category.SEP_P_VIRG:
                 self.printToken()
@@ -262,7 +264,7 @@ class Sintatico(object):
                 self.erro()
 
         elif self.tipo() != 1:
-            print("          Cmd = Tipo Decl 'SepPtv")
+            Tools.print_f("          Cmd = Tipo Decl 'SepPtv", self.filename)
             self.decl()
 
             if self.token.category == Category.SEP_P_VIRG:
@@ -272,8 +274,8 @@ class Sintatico(object):
                 self.erro()
 
         elif self.token.category == Category.BREAK:
-            print("           Comandos = Cmd Comandos")
-            print("           Cmd = 'break' 'sepptv'")
+            Tools.print_f("           Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("           Cmd = 'break' 'sepptv'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -285,8 +287,8 @@ class Sintatico(object):
                 self.erro()
 
         elif self.token.category == Category.RETURN:
-            print("         Comandos = Cmd Comandos")
-            print("         Cmd = 'return' e 'sepPtv")
+            Tools.print_f("         Comandos = Cmd Comandos", self.filename)
+            Tools.print_f("         Cmd = 'return' e 'sepPtv", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -306,7 +308,7 @@ class Sintatico(object):
 
     def vectorDecl(self):
         if self.token.category == Category.VECTOR:
-            print("           VectorDecl = 'vector' Tipo Decl")
+            Tools.print_f("           VectorDecl = 'vector' Tipo Decl", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -320,23 +322,23 @@ class Sintatico(object):
             self.erro()
 
     def decl(self):
-        print("           Tipo = NomeVar AtbDecl")
+        Tools.print_f("           Tipo = NomeVar AtbDecl", self.filename)
         self.nomeVar()
         self.declR()
         self.atb_decl()
 
     def declR(self):
         if self.token.category == Category.SEP_VIRG:
-            print("           DeclR = 'sepVirg' Decl")
+            Tools.print_f("           DeclR = 'sepVirg' Decl", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.decl()
         else:
-            print("           DeclR = 'épsilon")
+            Tools.print_f("           DeclR = 'épsilon", self.filename)
 
 
     def chamada_func(self):
-        print("           ChamadaFuncao = 'abrPar' Lchamada 'fecPar'")
+        Tools.print_f("           ChamadaFuncao = 'abrPar' Lchamada 'fecPar'", self.filename)
         if self.token.category == Category.ABR_PAR:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -352,33 +354,33 @@ class Sintatico(object):
             self.erro()
 
     def l_chamada(self):
-        print("           Lchamada = e lchamdaf")
+        Tools.print_f("           Lchamada = e lchamdaf", self.filename)
         self.e()
         self.l_chamadaf()
 
     def l_chamadaf(self):
 
         if self.token.category == Category.SEP_VIRG:
-            print("           LchamadaF = 'sepVir' e Lchamda f")
+            Tools.print_f("           LchamadaF = 'sepVir' e Lchamda f", self.filename)
             self.token = self.lex.nextToken()
             self.e()
             self.l_chamadaf()
         else:
-            print("           LchamadaF = épsilon")
+            Tools.print_f("           LchamadaF = épsilon", self.filename)
 
     def atb_decl(self):
 
         if self.token.category == Category.ATRIBUICAO:
-            print("           AtbDecl = 'atribuicao' e")
+            Tools.print_f("           AtbDecl = 'atribuicao' e", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.e()
 
         else:
-            print("           AtbDecl = épsilon")
+            Tools.print_f("           AtbDecl = épsilon", self.filename)
 
     def read(self):
-        print("            Read = 'read' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' NomeVar 'fecPar' 'SepPVirg'")
+        Tools.print_f("            Read = 'read' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' NomeVar 'fecPar' 'SepPVirg'", self.filename)
         if self.token.category == Category.READ:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -432,7 +434,7 @@ class Sintatico(object):
 
 
     def put(self):
-        print("           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg")
+        Tools.print_f("           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg", self.filename)
         if self.token.category == Category.PUT:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -490,7 +492,7 @@ class Sintatico(object):
 
     def putR(self):
         if self.token.category == Category.SIMPLE_ASP:
-            print("          Putr = 'simpleAsp' 'cadCaracter' 'simpleAsp'")
+            Tools.print_f("          Putr = 'simpleAsp' 'cadCaracter' 'simpleAsp'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -507,7 +509,7 @@ class Sintatico(object):
                 self.erro()
 
         else:
-            print("          Putr = E")
+            Tools.print_f("          Putr = E", self.filename)
             self.e()
 
 
@@ -516,11 +518,11 @@ class Sintatico(object):
 
     def cmd_f(self):
         if self.token.category == Category.ABR_PAR:
-            print("           CmdF = ChamadaFuncao")
+            Tools.print_f("           CmdF = ChamadaFuncao", self.filename)
             self.chamada_func()
 
         elif self.token.category == Category.ABR_COC:
-            print("           CmdF = 'abrCoc' e 'fecCoc' Atribuicao")
+            Tools.print_f("           CmdF = 'abrCoc' e 'fecCoc' Atribuicao", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -535,14 +537,14 @@ class Sintatico(object):
                 self.erro()
 
         elif self.token.category == Category.ATRIBUICAO:
-            print("           CmdF = Atribuicao")
+            Tools.print_f("           CmdF = Atribuicao", self.filename)
             self.atribuicao()
 
 
 
     def atribuicao(self):
         if self.token.category == Category.ATRIBUICAO:
-            print("           Atribuicao = 'atribuicao' e")
+            Tools.print_f("           Atribuicao = 'atribuicao' e", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.e()
@@ -553,18 +555,18 @@ class Sintatico(object):
 
 
     def _while(self):
-        print("           While = 'while' 'abrPar' E 'fecPar' Escopo")
+        Tools.print_f("           While = 'while' 'abrPar' E 'fecPar' Escopo", self.filename)
         if self.token.category == Category.WHILE:
             self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("while esperado")
+            Tools.print_f("while esperado", self.filename)
 
         if self.token.category == Category.ABR_PAR:
             self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("ABRPAR esperado")
+            Tools.print_f("ABRPAR esperado", self.filename)
 
         self.e()
 
@@ -572,23 +574,23 @@ class Sintatico(object):
             self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("FECPAR esperado")
+            Tools.print_f("FECPAR esperado", self.filename)
 
         self.escopo()
 
     def _if(self):
-        print("           If = 'if' 'abrPar' E 'fecPar' Escopo Else")
+        Tools.print_f("           If = 'if' 'abrPar' E 'fecPar' Escopo Else", self.filename)
         if self.token.category == Category.IF:
             self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("if esperado")
+            Tools.print_f("if esperado", self.filename)
 
         if self.token.category == Category.ABR_PAR:
             self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("ABRPAR esperado")
+            Tools.print_f("ABRPAR esperado", self.filename)
 
         self.e()
 
@@ -596,7 +598,7 @@ class Sintatico(object):
             self.printToken()
             self.token = self.lex.nextToken()
         else:
-            print("FECPAR esperado")
+            Tools.print_f("FECPAR esperado", self.filename)
 
         self.escopo()
         self._else()
@@ -604,17 +606,17 @@ class Sintatico(object):
     def _else(self):
 
         if self.token.category == Category.ELSE:
-            print("           Else = 'else' Escopo")
+            Tools.print_f("           Else = 'else' Escopo", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.escopo()
 
         else:
-            print("           Else = épsilon")
+            Tools.print_f("           Else = épsilon", self.filename)
 
 
     def _for(self):
-        print("           For = 'for' 'abrPar' NomeVar 'in' E 'to' E 'do' Escopo")
+        Tools.print_f("           For = 'for' 'abrPar' NomeVar 'in' E 'to' E 'do' Escopo", self.filename)
         if self.token.category == Category.FOR:
             self.printToken()
             self.token = self.lex.nextToken()
@@ -665,87 +667,87 @@ class Sintatico(object):
 
 
     def e(self):
-        print("           E = Eb Ebr")
+        Tools.print_f("           E = Eb Ebr", self.filename)
         self.eb()
         self.ebr()
 
     def eb(self):
-        print("           Eb = Tb Ebr")
+        Tools.print_f("           Eb = Tb Ebr", self.filename)
         self.tb()
         self.ebr()
 
     def ebr(self):
         if self.token.category == Category.OP_OR:
-            print("           Ebr = 'opOr' Tb Tbr")
+            Tools.print_f("           Ebr = 'opOr' Tb Tbr", self.filename)
             self.tb()
             self.tbr()
 
         else:
-            print("           Ebr = épsilon")
+            Tools.print_f("           Ebr = épsilon", self.filename)
 
 
     def tb(self):
-        print("           Tb = Fb Tbr")
+        Tools.print_f("           Tb = Fb Tbr", self.filename)
         self.fb()
         self.tbr()
 
     def tbr(self):
         if self.token.category == Category.OP_AND:
-            print("           Tbr = 'opAnd' Fb Tbr")
+            Tools.print_f("           Tbr = 'opAnd' Fb Tbr", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.fb()
             self.tbr()
 
         else:
-            print("           Tbr = épsilon")
+            Tools.print_f("           Tbr = épsilon", self.filename)
 
     def fb(self):
         if self.token.category == Category.OP_NOT:
-            print("           Fb = opNot RelUm")
+            Tools.print_f("           Fb = opNot RelUm", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.relUm()
 
         else:
-            print("           Fb = RelUm")
+            Tools.print_f("           Fb = RelUm", self.filename)
             self.relUm()
 
     def relUm(self):
-        print("           RelUm = RelDois RelUmF")
+        Tools.print_f("           RelUm = RelDois RelUmF", self.filename)
         self.relDois()
         self.relUmf()
 
     def relUmf(self):
         if self.token.category == Category.OP_MA:
-            print("           RelUmF = 'opMa' RelDois")
+            Tools.print_f("           RelUmF = 'opMa' RelDois", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.relDois()
 
         elif self.token.category == Category.OP_ME:
-            print("           RelUmF = 'opMe' RelDois")
+            Tools.print_f("           RelUmF = 'opMe' RelDois", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.relDois()
 
         elif self.token.category == Category.OP_MAIGU:
-            print("           RelUmF = 'opMaigu' RelDois")
+            Tools.print_f("           RelUmF = 'opMaigu' RelDois", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.relDois()
 
         elif self.token.category == Category.OP_MEIGU:
-            print("           RelUmF = 'opMeigu' RelDois")
+            Tools.print_f("           RelUmF = 'opMeigu' RelDois", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.relDois()
 
         else:
-            print("           RelUmf = épsilon")
+            Tools.print_f("           RelUmf = épsilon", self.filename)
 
     def relDois(self):
-        print("           RelDois = Concat RelDoisF")
+        Tools.print_f("           RelDois = Concat RelDoisF", self.filename)
         self.concat()
         self.relDoisF()
 
@@ -759,41 +761,41 @@ class Sintatico(object):
             pass
 
     def concat(self):
-        print("           Concat = Ea ConcatR")
+        Tools.print_f("           Concat = Ea ConcatR", self.filename)
         self.ea()
         self.concatr()
 
     def concatr(self):
         if self.token.category == Category.OP_CONC:
-            print("           ConcatR = 'opconc' Ea ConcatR")
+            Tools.print_f("           ConcatR = 'opconc' Ea ConcatR", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.ea()
             self.concatr()
         else:
-            print("           ConcatR = épsilon")
+            Tools.print_f("           ConcatR = épsilon", self.filename)
 
     def ea(self):
-        print("           Ea = Ta Ear")
+        Tools.print_f("           Ea = Ta Ear", self.filename)
         self.ta()
         self.ear()
 
     def ear(self):
         if self.opa() == 1:
-            print("           Ear = épsilon")
+            Tools.print_f("           Ear = épsilon", self.filename)
         else:
-            print("           Ear = ta Ear")
+            Tools.print_f("           Ear = ta Ear", self.filename)
             self.ta()
             self.ear()
 
     def opa(self):
         if self.token.category == Category.OP_ADD:
-            print("           Opa = 'opAdd'")
+            Tools.print_f("           Opa = 'opAdd'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.OP_SUB:
-            print("           Opa = 'opSub'")
+            Tools.print_f("           Opa = 'opSub'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
@@ -801,44 +803,44 @@ class Sintatico(object):
             return 1
 
     def ta(self):
-        print("           Ta = Unario Tar")
+        Tools.print_f("           Ta = Unario Tar", self.filename)
         self.unario()
         self.tar()
 
     def tar(self):
         if self.opm() == 0:
-            print("           Tar = Opm Unario Tar")
+            Tools.print_f("           Tar = Opm Unario Tar", self.filename)
             self.unario()
             self.tar()
         else:
-            print("           Tar = épsilon")
+            Tools.print_f("           Tar = épsilon", self.filename)
 
     def unario(self):
         if self.token.category == Category.OP_UNA:
-            print("           Unario = 'opUna' Fa")
+            Tools.print_f("           Unario = 'opUna' Fa", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.fa()
 
         else:
-            print("           Unario = Fa")
+            Tools.print_f("           Unario = Fa", self.filename)
             self.fa()
 
     def opm(self):
         if self.token.category == Category.OP_MULT:
-            print("           Opm = 'opMult'")
+            Tools.print_f("           Opm = 'opMult'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             return 0
 
         elif self.token.category == Category.OP_DIV:
-            print("           Opm = 'opDiv'")
+            Tools.print_f("           Opm = 'opDiv'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             return 0
 
         elif self.token.category == Category.OP_RET:
-            print("           Opm = 'opRet")
+            Tools.print_f("           Opm = 'opRet", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             return 0
@@ -848,48 +850,48 @@ class Sintatico(object):
 
     def fa(self):
         if self.token.category == Category.CONST_INT:
-            print("           Fa = 'constInt'")
+            Tools.print_f("           Fa = 'constInt'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CONST_FLO:
-            print("           Fa = 'constFlo'")
+            Tools.print_f("           Fa = 'constFlo'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CONST_CHA:
-            print("           Fa = 'ConstCha'")
+            Tools.print_f("           Fa = 'ConstCha'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.CONST_CCHAR:
-            print("           Fa = 'constCchar'")
+            Tools.print_f("           Fa = 'constCchar'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.TRUE:
-            print("           Fa = 'True'")
+            Tools.print_f("           Fa = 'True'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.FALSE:
-            print("           Fa = 'False'")
+            Tools.print_f("           Fa = 'False'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
 
         elif self.token.category == Category.ID:
-            print("           Fa = 'Id' Far")
+            Tools.print_f("           Fa = 'Id' Far", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.far()
 
     def far(self):
         if self.token.category == Category.ABR_PAR:
-            print("           Far = 'abrPar' ChamadaFuncao")
+            Tools.print_f("           Far = 'abrPar' ChamadaFuncao", self.filename)
             self.chamada_func()
 
         else:
-            print("           Far = VectorF")
+            Tools.print_f("           Far = VectorF", self.filename)
             self.vector_f()
 
 

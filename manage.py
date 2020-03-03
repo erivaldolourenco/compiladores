@@ -6,7 +6,7 @@ from sintatico.sintatico_analyzer import Sintatico
 file = sys.argv[2]
 op = sys.argv[1]
 
-print("--------------")
+
 if op == "-l":
     print("==================== Analisador Lexico =======================")
     lex = Lexeme(file)
@@ -14,7 +14,7 @@ if op == "-l":
     token = lex.nextToken()
 
     while token:
-        token.printToken()
+        token.printToken(file)
         token = lex.nextToken()
         # print lex.nextToken().lexeme
         # token.lexeme
@@ -24,7 +24,7 @@ elif op == "-s":
     print("==================== Analisador Sitantico =======================")
     lex = Lexeme(file)
     token = lex.nextToken()
-    Sintatico(token, lex).programa()
+    Sintatico(token, lex, file).programa()
     print("============================= Fim ===============================")
 
 else:

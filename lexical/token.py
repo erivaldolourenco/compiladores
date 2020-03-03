@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .category_token import Category
-
+from tools.tools import Tools
 
 class Token(object):
 
@@ -14,10 +14,7 @@ class Token(object):
 
     """Metodo que imprime o Token"""
 
-    def printToken(self):
-        print('              [' + str(self.position[0]).zfill(4) + ', ' + str(self.position[1]).zfill(4) + '] (' +
-              str(self.category.value).zfill(4) + ', ' + str(self.category.name).ljust(20) + ') {' + self.lexeme + '}')
-
-    def printTokenSintatico(self):
-        print('        [' + str(self.position[0]).zfill(4) + ', ' + str(self.position[1]).zfill(4) + '] (' +
-              str(self.category.value).zfill(4) + ', ' + str(self.category.name).ljust(20) + ') {' + self.lexeme + '}')
+    def printToken(self,filename):
+        
+        Tools.print_f(str('              [' + str(self.position[0]).zfill(4) + ', ' + str(self.position[1]).zfill(4) + '] (' +
+              str(self.category.value).zfill(4) + ', ' + str(self.category.name).ljust(20) + ') {' + self.lexeme + '}') , filename)

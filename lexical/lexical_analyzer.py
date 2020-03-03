@@ -2,6 +2,8 @@
 from .token import Token
 from .category_token import Category
 from .lexical_table import LexicalTable
+from tools.tools import Tools
+
 import linecache
 import re
 
@@ -15,7 +17,9 @@ class Lexeme(object):
         self.nline = 1
         self.ncolumn = 0
         self.line = linecache.getline(self.file, self.nline)
-        print(str(self.nline).rjust(4) + " " + str(self.line), end='')
+        # print(str(self.nline).rjust(4) + " " + str(self.line), end='')
+        Tools.print_f(str((str(self.nline).rjust(4) + " " + str(self.line))), self.file)
+
 
     def nextToken(self):
 
@@ -273,7 +277,8 @@ class Lexeme(object):
                 self.ncolumn = 0
                 self.nline += 1
                 self.line = linecache.getline(self.file, self.nline)
-                print(str(self.nline).rjust(4) + " " + str(self.line), end='')
+                # print(str(self.nline).rjust(4) + " " + str(self.line), end='')
+                Tools.print_f(str((str(self.nline).rjust(4) + " " + str(self.line))), self.file)
                 return self.nextToken()
 
             else:
