@@ -1,0 +1,530 @@
+==================== Analisador Sitantico =======================
+   1 function void fibonacci(int num)
+
+          Programa = Funcao Begin
+               Funcao = 'function' Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'
+              [0001, 0008] (0023, FUNCTION            ) {function}
+           Tipo = 'void
+              [0001, 0013] (0025, VOID                ) {void}
+           NomeVar = 'id' VectorF
+              [0001, 0023] (0044, ID                  ) {fibonacci}
+           VectorF = épsilon
+              [0001, 0023] (0037, ABR_PAR             ) {(}
+           Lparam = Vector Tipo NomeVar LparamF
+           Vector = épsilon
+           Tipo = 'int'
+              [0001, 0027] (0029, INT                 ) {int}
+           NomeVar = 'id' VectorF
+              [0001, 0031] (0044, ID                  ) {num}
+           VectorF = épsilon
+           LparamF = 'sepVirg' Lparam
+           LparamF = épsilon
+              [0001, 0031] (0038, FEC_PAR             ) {)}
+   2 {
+
+           Escopo = 'abrCh' Comandos 'FecCh
+              [0002, 0000] (0035, ABR_CH              ) {{}
+   3   int i, j, t;
+
+           Tipo = 'int'
+              [0003, 0005] (0029, INT                 ) {int}
+          Cmd = Tipo Decl 'SepPtv
+           Tipo = NomeVar AtbDecl
+           NomeVar = 'id' VectorF
+              [0003, 0007] (0044, ID                  ) {i}
+           VectorF = épsilon
+           DeclR = 'sepVirg' Decl
+              [0003, 0007] (0041, SEP_VIRG            ) {,}
+           Tipo = NomeVar AtbDecl
+           NomeVar = 'id' VectorF
+              [0003, 0010] (0044, ID                  ) {j}
+           VectorF = épsilon
+           DeclR = 'sepVirg' Decl
+              [0003, 0010] (0041, SEP_VIRG            ) {,}
+           Tipo = NomeVar AtbDecl
+           NomeVar = 'id' VectorF
+              [0003, 0013] (0044, ID                  ) {t}
+           VectorF = épsilon
+           DeclR = 'épsilon
+           AtbDecl = épsilon
+           AtbDecl = épsilon
+           AtbDecl = épsilon
+              [0003, 0013] (0042, SEP_P_VIRG          ) {;}
+   4   j = 1;
+
+           Comandos = Cmd Comandos
+           Cmd = 'id' CmdF 'sepPtv'
+              [0004, 0003] (0044, ID                  ) {j}
+           CmdF = Atribuicao
+           Atribuicao = 'atribuicao' e
+              [0004, 0004] (0017, ATRIBUICAO          ) {=}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'constInt'
+              [0004, 0007] (0048, CONST_INT           ) {1}
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0004, 0007] (0042, SEP_P_VIRG          ) {;}
+   5   i = 0;
+
+           Comandos = Cmd Comandos
+           Cmd = 'id' CmdF 'sepPtv'
+              [0005, 0003] (0044, ID                  ) {i}
+           CmdF = Atribuicao
+           Atribuicao = 'atribuicao' e
+              [0005, 0004] (0017, ATRIBUICAO          ) {=}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'constInt'
+              [0005, 0007] (0048, CONST_INT           ) {0}
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0005, 0007] (0042, SEP_P_VIRG          ) {;}
+   6   t = 1;
+
+           Comandos = Cmd Comandos
+           Cmd = 'id' CmdF 'sepPtv'
+              [0006, 0003] (0044, ID                  ) {t}
+           CmdF = Atribuicao
+           Atribuicao = 'atribuicao' e
+              [0006, 0004] (0017, ATRIBUICAO          ) {=}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'constInt'
+              [0006, 0007] (0048, CONST_INT           ) {1}
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0006, 0007] (0042, SEP_P_VIRG          ) {;}
+   7   
+
+   8   if (num < 0)
+
+           Comandos = Cmd Comandos
+           Cmd = IF
+           If = 'if' 'abrPar' E 'fecPar' Escopo Else
+              [0008, 0004] (0018, IF                  ) {if}
+              [0008, 0005] (0037, ABR_PAR             ) {(}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0008, 0009] (0044, ID                  ) {num}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmF = 'opMe' RelDois
+              [0008, 0009] (0011, OP_ME               ) {<}
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'constInt'
+              [0008, 0013] (0048, CONST_INT           ) {0}
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0008, 0013] (0038, FEC_PAR             ) {)}
+   9   {
+
+           Escopo = 'abrCh' Comandos 'FecCh
+              [0009, 0002] (0035, ABR_CH              ) {{}
+  10       put('%s', 'Não é possível fazer uma sequencia fibonacci');
+
+           Comandos = Cmd Comandos
+           Cmd = Put
+           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg
+              [0010, 0009] (0027, PUT                 ) {put}
+              [0010, 0009] (0037, ABR_PAR             ) {(}
+              [0010, 0010] (0043, SIMPLE_ASP          ) {'}
+              [0010, 0011] (0047, CAD_CARACTER        ) {%s}
+              [0010, 0013] (0043, SIMPLE_ASP          ) {'}
+              [0010, 0014] (0041, SEP_VIRG            ) {,}
+          Putr = 'simpleAsp' 'cadCaracter' 'simpleAsp'
+              [0010, 0016] (0043, SIMPLE_ASP          ) {'}
+              [0010, 0061] (0047, CAD_CARACTER        ) {Não é possível fazer uma sequencia fibonacci}
+              [0010, 0061] (0043, SIMPLE_ASP          ) {'}
+              [0010, 0062] (0038, FEC_PAR             ) {)}
+              [0010, 0063] (0042, SEP_P_VIRG          ) {;}
+  11   }
+
+           Comandos = épsilon
+              [0011, 0002] (0036, FEC_CH              ) {}}
+  12   
+
+  13   else
+
+           Else = 'else' Escopo
+              [0013, 0006] (0019, ELSE                ) {else}
+  14   {
+
+           Escopo = 'abrCh' Comandos 'FecCh
+              [0014, 0002] (0035, ABR_CH              ) {{}
+  15       put('%d', 0);
+
+           Comandos = Cmd Comandos
+           Cmd = Put
+           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg
+              [0015, 0009] (0027, PUT                 ) {put}
+              [0015, 0009] (0037, ABR_PAR             ) {(}
+              [0015, 0010] (0043, SIMPLE_ASP          ) {'}
+              [0015, 0011] (0047, CAD_CARACTER        ) {%d}
+              [0015, 0013] (0043, SIMPLE_ASP          ) {'}
+              [0015, 0014] (0041, SEP_VIRG            ) {,}
+          Putr = E
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'constInt'
+              [0015, 0017] (0048, CONST_INT           ) {0}
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0015, 0017] (0038, FEC_PAR             ) {)}
+              [0015, 0018] (0042, SEP_P_VIRG          ) {;}
+  16       while (t <= num)
+
+           Comandos = Cmd Comandos
+           Cmd = While
+           While = 'while' 'abrPar' E 'fecPar' Escopo
+              [0016, 0011] (0020, WHILE               ) {while}
+              [0016, 0012] (0037, ABR_PAR             ) {(}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0016, 0014] (0044, ID                  ) {t}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmF = 'opMeigu' RelDois
+              [0016, 0015] (0010, OP_MEIGU            ) {<=}
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0016, 0021] (0044, ID                  ) {num}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0016, 0021] (0038, FEC_PAR             ) {)}
+  17           {
+
+           Escopo = 'abrCh' Comandos 'FecCh
+              [0017, 0010] (0035, ABR_CH              ) {{}
+  18               put(', %d', t);
+
+           Comandos = Cmd Comandos
+           Cmd = Put
+           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg
+              [0018, 0017] (0027, PUT                 ) {put}
+              [0018, 0017] (0037, ABR_PAR             ) {(}
+              [0018, 0018] (0043, SIMPLE_ASP          ) {'}
+              [0018, 0019] (0047, CAD_CARACTER        ) {, %d}
+              [0018, 0023] (0043, SIMPLE_ASP          ) {'}
+              [0018, 0024] (0041, SEP_VIRG            ) {,}
+          Putr = E
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0018, 0027] (0044, ID                  ) {t}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0018, 0027] (0038, FEC_PAR             ) {)}
+              [0018, 0028] (0042, SEP_P_VIRG          ) {;}
+  19               t = i + j;
+
+           Comandos = Cmd Comandos
+           Cmd = 'id' CmdF 'sepPtv'
+              [0019, 0015] (0044, ID                  ) {t}
+           CmdF = Atribuicao
+           Atribuicao = 'atribuicao' e
+              [0019, 0016] (0017, ATRIBUICAO          ) {=}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0019, 0019] (0044, ID                  ) {i}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Opa = 'opAdd'
+              [0019, 0020] (0001, OP_ADD              ) {+}
+           Ear = ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0019, 0023] (0044, ID                  ) {j}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0019, 0023] (0042, SEP_P_VIRG          ) {;}
+  20               i = j;
+
+           Comandos = Cmd Comandos
+           Cmd = 'id' CmdF 'sepPtv'
+              [0020, 0015] (0044, ID                  ) {i}
+           CmdF = Atribuicao
+           Atribuicao = 'atribuicao' e
+              [0020, 0016] (0017, ATRIBUICAO          ) {=}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0020, 0019] (0044, ID                  ) {j}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0020, 0019] (0042, SEP_P_VIRG          ) {;}
+  21               j = t;
+
+           Comandos = Cmd Comandos
+           Cmd = 'id' CmdF 'sepPtv'
+              [0021, 0015] (0044, ID                  ) {j}
+           CmdF = Atribuicao
+           Atribuicao = 'atribuicao' e
+              [0021, 0016] (0017, ATRIBUICAO          ) {=}
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0021, 0019] (0044, ID                  ) {t}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+              [0021, 0019] (0042, SEP_P_VIRG          ) {;}
+  22               
+
+  23           }
+
+           Comandos = épsilon
+              [0023, 0010] (0036, FEC_CH              ) {}}
+  24       
+
+  25       
+
+  26       
+
+  27   }
+
+           Comandos = épsilon
+              [0027, 0002] (0036, FEC_CH              ) {}}
+  28  
+
+  29 }
+
+           Comandos = épsilon
+              [0029, 0000] (0036, FEC_CH              ) {}}
+  30 
+
+  31 void begin()
+
+          Funcao = épsilon
+          Begin = 'void' 'begin' 'abrpar' 'fecpar' Escopo
+              [0031, 0004] (0025, VOID                ) {void}
+              [0031, 0010] (0022, BEGIN               ) {begin}
+              [0031, 0010] (0037, ABR_PAR             ) {(}
+              [0031, 0011] (0038, FEC_PAR             ) {)}
+  32 {
+
+           Escopo = 'abrCh' Comandos 'FecCh
+              [0032, 0000] (0035, ABR_CH              ) {{}
+  33    int num;
+
+           Tipo = 'int'
+              [0033, 0006] (0029, INT                 ) {int}
+          Cmd = Tipo Decl 'SepPtv
+           Tipo = NomeVar AtbDecl
+           NomeVar = 'id' VectorF
+              [0033, 0010] (0044, ID                  ) {num}
+           VectorF = épsilon
+           DeclR = 'épsilon
+           AtbDecl = épsilon
+              [0033, 0010] (0042, SEP_P_VIRG          ) {;}
+  34    read('%d', num);
+
+           Comandos = Cmd Comandos
+           Cmd = Read
+            Read = 'read' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' NomeVar 'fecPar' 'SepPVirg'
+              [0034, 0007] (0026, READ                ) {read}
+              [0034, 0007] (0037, ABR_PAR             ) {(}
+              [0034, 0008] (0043, SIMPLE_ASP          ) {'}
+              [0034, 0009] (0047, CAD_CARACTER        ) {%d}
+              [0034, 0011] (0043, SIMPLE_ASP          ) {'}
+              [0034, 0012] (0041, SEP_VIRG            ) {,}
+           NomeVar = 'id' VectorF
+              [0034, 0017] (0044, ID                  ) {num}
+           VectorF = épsilon
+              [0034, 0017] (0038, FEC_PAR             ) {)}
+              [0034, 0018] (0042, SEP_P_VIRG          ) {;}
+  35    fibonacci(num);
+
+           Comandos = Cmd Comandos
+           Cmd = 'id' CmdF 'sepPtv'
+              [0035, 0012] (0044, ID                  ) {fibonacci}
+           CmdF = ChamadaFuncao
+           ChamadaFuncao = 'abrPar' Lchamada 'fecPar'
+              [0035, 0012] (0037, ABR_PAR             ) {(}
+           Lchamada = e lchamdaf
+           E = Eb Ebr
+           Eb = Tb Ebr
+           Tb = Fb Tbr
+           Fb = RelUm
+           RelUm = RelDois RelUmF
+           RelDois = Concat RelDoisF
+           Concat = Ea ConcatR
+           Ea = Ta Ear
+           Ta = Unario Tar
+           Unario = Fa
+           Fa = 'Id' Far
+              [0035, 0016] (0044, ID                  ) {num}
+           Far = VectorF
+           VectorF = épsilon
+           Tar = épsilon
+           Ear = épsilon
+           ConcatR = épsilon
+           RelUmf = épsilon
+           Tbr = épsilon
+           Ebr = épsilon
+           Ebr = épsilon
+           LchamadaF = épsilon
+              [0035, 0016] (0038, FEC_PAR             ) {)}
+              [0035, 0017] (0042, SEP_P_VIRG          ) {;}
+  36 }
+
+           Comandos = épsilon
+              [0036, 0000] (0036, FEC_CH              ) {}}
+  37 
+============================= Fim ===============================
