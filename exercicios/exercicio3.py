@@ -1,3 +1,5 @@
+#S atribuido
+
 def fEa(self):  
   Tarvh, Fav, Tav, Tarvs
   Fav = fFa()

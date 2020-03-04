@@ -118,7 +118,7 @@ class Sintatico(object):
             Tools.print_f("           VectorF = 'abrCoc' e 'fecCoc'", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
-            self.e()
+            self.expr()
 
             if self.token.category == Category.FEC_COC:
                 self.printToken()
@@ -293,7 +293,7 @@ class Sintatico(object):
             self.printToken()
             self.token = self.lex.nextToken()
 
-            self.e()
+            self.expr()
 
             if self.token.category == Category.SEP_P_VIRG:
                 self.printToken()
@@ -356,7 +356,7 @@ class Sintatico(object):
 
     def l_chamada(self):
         Tools.print_f("           Lchamada = e lchamdaf", self.filename)
-        self.e()
+        self.expr()
         self.l_chamadaf()
 
     def l_chamadaf(self):
@@ -364,7 +364,7 @@ class Sintatico(object):
         if self.token.category == Category.SEP_VIRG:
             Tools.print_f("           LchamadaF = 'sepVir' e Lchamda f", self.filename)
             self.token = self.lex.nextToken()
-            self.e()
+            self.expr()
             self.l_chamadaf()
         else:
             Tools.print_f("           LchamadaF = épsilon", self.filename)
@@ -375,7 +375,7 @@ class Sintatico(object):
             Tools.print_f("           AtbDecl = 'atribuicao' e", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
-            self.e()
+            self.expr()
 
         else:
             Tools.print_f("           AtbDecl = épsilon", self.filename)
@@ -511,7 +511,7 @@ class Sintatico(object):
 
         else:
             Tools.print_f("          Putr = E", self.filename)
-            self.e()
+            self.expr()
 
 
 
@@ -527,7 +527,7 @@ class Sintatico(object):
             self.printToken()
             self.token = self.lex.nextToken()
 
-            self.e()
+            self.expr()
 
             if self.token.category == Category.FEC_COC:
                 self.printToken()
@@ -548,7 +548,7 @@ class Sintatico(object):
             Tools.print_f("           Atribuicao = 'atribuicao' e", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
-            self.e()
+            self.expr()
         else:
             self.erro()
 
@@ -569,7 +569,7 @@ class Sintatico(object):
         else:
             Tools.print_f("ABRPAR esperado", self.filename)
 
-        self.e()
+        self.expr()
 
         if self.token.category == Category.FEC_PAR:
             self.printToken()
@@ -593,7 +593,7 @@ class Sintatico(object):
         else:
             Tools.print_f("ABRPAR esperado", self.filename)
 
-        self.e()
+        self.expr()
 
         if self.token.category == Category.FEC_PAR:
             self.printToken()
@@ -634,12 +634,12 @@ class Sintatico(object):
             if self.token.category == Category.IN:
                 self.printToken()
                 self.token = self.lex.nextToken()
-                self.e()
+                self.expr()
 
                 if self.token.category == Category.TO:
                     self.printToken()
                     self.token = self.lex.nextToken()
-                    self.e()
+                    self.expr()
 
                     if self.token.category == Category.DO:
                         self.printToken()

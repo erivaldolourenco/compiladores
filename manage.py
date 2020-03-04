@@ -2,13 +2,15 @@
 import sys
 from lexical.lexical_analyzer import Lexeme
 from sintatico.sintatico_analyzer import Sintatico
+from tools.tools import Tools
+
 
 file = sys.argv[2]
 op = sys.argv[1]
 
 
 if op == "-l":
-    print("==================== Analisador Lexico =======================")
+    Tools.print_f("==================== Analisador Lexico =======================",file)
     lex = Lexeme(file)
 
     token = lex.nextToken()
@@ -18,14 +20,14 @@ if op == "-l":
         token = lex.nextToken()
         # print lex.nextToken().lexeme
         # token.lexeme
-    print("\n============================= Fim ===============================")
+    Tools.print_f("\n============================= Fim ===============================", file)
 
 elif op == "-s":
-    print("==================== Analisador Sitantico =======================")
+    Tools.print_f("==================== Analisador Sitantico =======================",file)
     lex = Lexeme(file)
     token = lex.nextToken()
     Sintatico(token, lex, file).programa()
-    print("============================= Fim ===============================")
+    Tools.print_f("============================= Fim ===============================",file)
 
 else:
     print("======================== Opcao Invalida! ========================")
