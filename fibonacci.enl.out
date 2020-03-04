@@ -152,9 +152,8 @@
           Tar = épsilon
           Ear = épsilon
           ConcatR = épsilon
-          RelUmF = 'opMe' RelDois
+          RelDoisF = 'opMe' EConcat
               [0008, 0009] (0011, OP_ME               ) {<}
-          RelDois = Concat RelDoisF
           Concat = Ea ConcatR
           Ea = Ta Ear
           Ta = Unario Tar
@@ -164,6 +163,7 @@
           Tar = épsilon
           Ear = épsilon
           ConcatR = épsilon
+          RelUmf = épsilon
           Tbr = épsilon
           Ebr = épsilon
           Ebr = épsilon
@@ -252,9 +252,8 @@
           Tar = épsilon
           Ear = épsilon
           ConcatR = épsilon
-          RelUmF = 'opMeigu' RelDois
+          RelDoisF = 'opMeigu' EConcat
               [0016, 0015] (0010, OP_MEIGU            ) {<=}
-          RelDois = Concat RelDoisF
           Concat = Ea ConcatR
           Ea = Ta Ear
           Ta = Unario Tar
@@ -266,6 +265,7 @@
           Tar = épsilon
           Ear = épsilon
           ConcatR = épsilon
+          RelUmf = épsilon
           Tbr = épsilon
           Ebr = épsilon
           Ebr = épsilon

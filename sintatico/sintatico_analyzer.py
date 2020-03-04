@@ -17,7 +17,7 @@ class Sintatico(object):
 
     def erro(self):
         Tools.print_f("          ERRO", self.filename)
-        Tools.print_f(self.token.printToken(self.filename))
+        Tools.print_f(self.token.printToken(self.filename), str(self.filename))
         exit()
 
     def printToken(self):
@@ -753,7 +753,25 @@ class Sintatico(object):
         self.relDoisF()
 
     def relDoisF(self):
+        # print("realw")
+        
         if self.token.category == Category.OP_MAIGU:
+            Tools.print_f("          RelDoisF = 'opMaigu' EConcat", self.filename)
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.concat()
+        if self.token.category == Category.OP_MA:
+            Tools.print_f("          RelDoisF = 'opMa' EConcat", self.filename)
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.concat()
+        if self.token.category == Category.OP_MEIGU:
+            Tools.print_f("          RelDoisF = 'opMeigu' EConcat", self.filename)
+            self.printToken()
+            self.token = self.lex.nextToken()
+            self.concat()
+        if self.token.category == Category.OP_ME:
+            Tools.print_f("          RelDoisF = 'opMe' EConcat", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.concat()
