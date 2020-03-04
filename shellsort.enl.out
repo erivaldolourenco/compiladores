@@ -1,6 +1,5 @@
 ==================== Analisador Sitantico =======================
-   1 function void shellSort(vector int vet, int tamanho) 
-
+   1  function void shellSort(vector int vet, int tamanho) 
           Programa = Funcao Begin
           Funcao = 'function' Tipo NomeVar 'abrPar' Lparam 'fecPar' Escopo'
               [0001, 0008] (0023, FUNCTION            ) {function}
@@ -32,11 +31,9 @@
           LparamF = épsilon
               [0001, 0051] (0038, FEC_PAR             ) {)}
    2 {
-
           Escopo = 'abrCh' Comandos 'FecCh
               [0002, 0000] (0035, ABR_CH              ) {{}
    3    int i, j, value;
-
           Tipo = 'int'
               [0003, 0006] (0029, INT                 ) {int}
           Cmd = Tipo Decl 'SepPtv
@@ -62,7 +59,6 @@
           AtbDecl = épsilon
               [0003, 0018] (0042, SEP_P_VIRG          ) {;}
    4    int h = 1;
-
           Tipo = 'int'
               [0004, 0006] (0029, INT                 ) {int}
           Cmd = Tipo Decl 'SepPtv
@@ -94,9 +90,7 @@
           Ebr = épsilon
               [0004, 0012] (0042, SEP_P_VIRG          ) {;}
    5    
-
    6    while(h < tamanho)
-
           Comandos = Cmd Comandos
           Cmd = While
           While = 'while' 'abrPar' E 'fecPar' Escopo
@@ -138,11 +132,9 @@
           Ebr = épsilon
               [0006, 0020] (0038, FEC_PAR             ) {)}
    7    {
-
           Escopo = 'abrCh' Comandos 'FecCh
               [0007, 0003] (0035, ABR_CH              ) {{}
    8         h = 3 * h + 1;
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0008, 0009] (0044, ID                  ) {h}
@@ -186,15 +178,11 @@
           Ebr = épsilon
               [0008, 0021] (0042, SEP_P_VIRG          ) {;}
    9    }
-
           Comandos = épsilon
               [0009, 0003] (0036, FEC_CH              ) {}}
   10    
-
   11 
-
   12    while (h > 0)
-
           Comandos = Cmd Comandos
           Cmd = While
           While = 'while' 'abrPar' E 'fecPar' Escopo
@@ -234,13 +222,10 @@
           Ebr = épsilon
               [0012, 0015] (0038, FEC_PAR             ) {)}
   13    {
-
           Escopo = 'abrCh' Comandos 'FecCh
               [0013, 0003] (0035, ABR_CH              ) {{}
   14 
-
   15        for (i in h to tamanho do)
-
           Comandos = Cmd Comandos
           Cmd = For
           For = 'for' 'abrPar' NomeVar 'in' E 'to' E 'do' Escopo
@@ -296,11 +281,9 @@
               [0015, 0032] (0055, DO                  ) {do}
               [0015, 0032] (0038, FEC_PAR             ) {)}
   16        {
-
           Escopo = 'abrCh' Comandos 'FecCh
               [0016, 0007] (0035, ABR_CH              ) {{}
   17             value = vet[i];
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0017, 0017] (0044, ID                  ) {value}
@@ -353,7 +336,6 @@
           Ebr = épsilon
               [0017, 0026] (0042, SEP_P_VIRG          ) {;}
   18             j = i;
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0018, 0013] (0044, ID                  ) {j}
@@ -383,7 +365,6 @@
           Ebr = épsilon
               [0018, 0017] (0042, SEP_P_VIRG          ) {;}
   19             while (j > h-1 && value <= vet[j - h]) 
-
           Comandos = Cmd Comandos
           Cmd = While
           While = 'while' 'abrPar' E 'fecPar' Escopo
@@ -496,11 +477,9 @@
           Ebr = épsilon
               [0019, 0049] (0038, FEC_PAR             ) {)}
   20             {
-
           Escopo = 'abrCh' Comandos 'FecCh
               [0020, 0012] (0035, ABR_CH              ) {{}
   21                 vet[j] = vet [j - h];
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0021, 0019] (0044, ID                  ) {vet}
@@ -586,7 +565,6 @@
           Ebr = épsilon
               [0021, 0036] (0042, SEP_P_VIRG          ) {;}
   22                 j = j - h;
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0022, 0017] (0044, ID                  ) {j}
@@ -626,11 +604,9 @@
           Ebr = épsilon
               [0022, 0025] (0042, SEP_P_VIRG          ) {;}
   23             }
-
           Comandos = épsilon
               [0023, 0012] (0036, FEC_CH              ) {}}
   24             vet[j] = value;
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0024, 0015] (0044, ID                  ) {vet}
@@ -683,11 +659,9 @@
           Ebr = épsilon
               [0024, 0026] (0042, SEP_P_VIRG          ) {;}
   25        }
-
           Comandos = épsilon
               [0025, 0007] (0036, FEC_CH              ) {}}
   26        h = h/3;
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0026, 0008] (0044, ID                  ) {h}
@@ -723,11 +697,9 @@
           Ebr = épsilon
               [0026, 0014] (0042, SEP_P_VIRG          ) {;}
   27    }
-
           Comandos = épsilon
               [0027, 0003] (0036, FEC_CH              ) {}}
   28    return vet;
-
           Comandos = Cmd Comandos
           Cmd = 'return' e 'sepPtv
               [0028, 0009] (0024, RETURN              ) {return}
@@ -754,21 +726,14 @@
           Ebr = épsilon
               [0028, 0013] (0042, SEP_P_VIRG          ) {;}
   29 }
-
           Comandos = épsilon
               [0029, 0000] (0036, FEC_CH              ) {}}
   30        
-
   31 
-
   32    
-
   33 
-
   34   
-
   35 void begin()
-
           Funcao = épsilon
           Begin = 'void' 'begin' 'abrpar' 'fecpar' Escopo
               [0035, 0004] (0025, VOID                ) {void}
@@ -776,15 +741,11 @@
               [0035, 0010] (0037, ABR_PAR             ) {(}
               [0035, 0011] (0038, FEC_PAR             ) {)}
   36 {
-
           Escopo = 'abrCh' Comandos 'FecCh
               [0036, 0000] (0035, ABR_CH              ) {{}
   37   
-
   38    
-
   39    int tam;
-
           Tipo = 'int'
               [0039, 0006] (0029, INT                 ) {int}
           Cmd = Tipo Decl 'SepPtv
@@ -796,7 +757,6 @@
           AtbDecl = épsilon
               [0039, 0010] (0042, SEP_P_VIRG          ) {;}
   40    read('%d', tam);
-
           Comandos = Cmd Comandos
           Cmd = Read
           Read = 'read' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' NomeVar 'fecPar' 'SepPVirg'
@@ -812,7 +772,6 @@
               [0040, 0017] (0038, FEC_PAR             ) {)}
               [0040, 0018] (0042, SEP_P_VIRG          ) {;}
   41    vector int vetor[tam];
-
           Comandos = Cmd Comandos
           Cmd = VectorDecl Tipo Decl
           VectorDecl = 'vector' Tipo Decl
@@ -848,11 +807,8 @@
           AtbDecl = épsilon
               [0041, 0024] (0042, SEP_P_VIRG          ) {;}
   42    
-
   43 
-
   44    for(i in 1 to tam do){
-
           Comandos = Cmd Comandos
           Cmd = For
           For = 'for' 'abrPar' NomeVar 'in' E 'to' E 'do' Escopo
@@ -908,7 +864,6 @@
           Escopo = 'abrCh' Comandos 'FecCh
               [0044, 0024] (0035, ABR_CH              ) {{}
   45         read('%d' , vetor[i]);
-
           Comandos = Cmd Comandos
           Cmd = Read
           Read = 'read' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' NomeVar 'fecPar' 'SepPVirg'
@@ -947,13 +902,10 @@
               [0045, 0028] (0038, FEC_PAR             ) {)}
               [0045, 0029] (0042, SEP_P_VIRG          ) {;}
   46    }
-
           Comandos = épsilon
               [0046, 0003] (0036, FEC_CH              ) {}}
   47 
-
   48    for(i in 1 to tam do){
-
           Comandos = Cmd Comandos
           Cmd = For
           For = 'for' 'abrPar' NomeVar 'in' E 'to' E 'do' Escopo
@@ -1009,7 +961,6 @@
           Escopo = 'abrCh' Comandos 'FecCh
               [0048, 0024] (0035, ABR_CH              ) {{}
   49        put('%d\n', vetor[i]);
-
           Comandos = Cmd Comandos
           Cmd = Put
           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg
@@ -1067,13 +1018,10 @@
               [0049, 0027] (0038, FEC_PAR             ) {)}
               [0049, 0028] (0042, SEP_P_VIRG          ) {;}
   50    }
-
           Comandos = épsilon
               [0050, 0003] (0036, FEC_CH              ) {}}
   51   
-
   52    vetor = shellsort(vetor, tam);
-
           Comandos = Cmd Comandos
           Cmd = 'id' CmdF 'sepPtv'
               [0052, 0008] (0044, ID                  ) {vetor}
@@ -1150,9 +1098,7 @@
           Ebr = épsilon
               [0052, 0032] (0042, SEP_P_VIRG          ) {;}
   53 
-
   54    for(i in 1 to tam do){
-
           Comandos = Cmd Comandos
           Cmd = For
           For = 'for' 'abrPar' NomeVar 'in' E 'to' E 'do' Escopo
@@ -1208,7 +1154,6 @@
           Escopo = 'abrCh' Comandos 'FecCh
               [0054, 0024] (0035, ABR_CH              ) {{}
   55        put('%d\n', vetor[i]);
-
           Comandos = Cmd Comandos
           Cmd = Put
           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg
@@ -1266,13 +1211,10 @@
               [0055, 0027] (0038, FEC_PAR             ) {)}
               [0055, 0028] (0042, SEP_P_VIRG          ) {;}
   56    }
-
           Comandos = épsilon
               [0056, 0003] (0036, FEC_CH              ) {}}
   57   
-
   58 }
-
           Comandos = épsilon
               [0058, 0000] (0036, FEC_CH              ) {}}
   59 

@@ -8,7 +8,7 @@ class Tools(object):
 
 	def print_f(msg, filename):
 		# sample = open(str(filename)+'.out', 'w') 
-		with open(str(filename)+'.out', 'a+') as f:
+		with open(str(filename)+'.out', 'a') as f:
 
-			print(msg, file=f)
+			f.write(msg+'\n')
 			# sample.close() 

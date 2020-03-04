@@ -18,7 +18,7 @@ class Lexeme(object):
         self.ncolumn = 0
         self.line = linecache.getline(self.file, self.nline)
         # print(str(self.nline).rjust(4) + " " + str(self.line), end='')
-        Tools.print_f(str((str(self.nline).rjust(4) + " " + str(self.line))), self.file)
+        Tools.print_f(str((str(self.nline).rjust(4) + "  " + str(self.line.rstrip('\n')))), self.file)
 
 
     def nextToken(self):
@@ -278,7 +278,7 @@ class Lexeme(object):
                 self.nline += 1
                 self.line = linecache.getline(self.file, self.nline)
                 # print(str(self.nline).rjust(4) + " " + str(self.line), end='')
-                Tools.print_f(str((str(self.nline).rjust(4) + " " + str(self.line))), self.file)
+                Tools.print_f(str((str(self.nline).rjust(4) + " " + str(self.line.rstrip('\n')))), self.file)
                 return self.nextToken()
 
             else:
