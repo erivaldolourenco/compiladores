@@ -60,6 +60,7 @@ class Sintatico(object):
                 self.erro()
 
             self.escopo()
+            self.funcao()
 
         else:
             Tools.print_f("          Funcao = épsilon", self.filename)

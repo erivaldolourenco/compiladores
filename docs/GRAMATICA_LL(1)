@@ -1,0 +1,121 @@
+Programa = Funcao Begin
+Funcao = 'function' Tipo NomeVar '(' LParam ')' Escopo Funcao
+Funcao = ε
+Begin = 'void' 'begin' '(' ')' Escopo
+
+NomeVar = 'id' VectorF
+Vector = 'vector' VectorF
+Vector = ε
+VectorF = '[' Expr ']'
+Vectorf = ε
+
+LParam = Vector Tipo NomeVar LParamF
+LParam = ε
+LParamF = ',' lparam
+
+
+
+Tipo = 'int'
+Tipo = 'float'
+Tipo = 'cchar'
+Tipo = 'char'
+Tipo = 'bool'
+Tipo = 'void'
+
+
+Escopo = '{' Comandos '}'
+Comandos = Cmd Comandos
+Comandos = ε
+Cmd = Read
+Cmd = Put
+Cmd = While
+Cmd = If
+Cmd = For
+Cmd = VectorDecl ';'
+Cmd = Tipo Decl ';'
+Cmd = 'id' CmdF ';'
+Cmd = 'break' ';'
+Cmd = 'return' Expr ';'
+
+Decl = NomeVar AtbDecl
+VectorDecl = 'vector' tipo decl
+
+ChamadaFunc = '(' LChamada ')'
+LChamada = Expr LChamadaF
+LChamada = ε
+LChamadaF = ',' Expr LChamadaF
+LChamadaF = ε
+
+AtbDecl = '=' Expr
+AtbDecl = ε
+Read = 'read' '(' 'SimpleAsp' 'cadCaracter' 'SimpleAsp' ',' NomeVar ')' ';'
+Put = 'put' '(' 'simpleAsp' 'cadCaracter' 'simpleAsp' ',' Putr ')' ';"
+Putr = 'simpleAsp' 'cadCaracter' 'simpleAsp'
+
+
+CmdF = Atribuicao
+CmdF = ChamadaFunc
+CmdF = '[' Expr ']' Atribuicao
+Atribuicao = '=' Expr
+While = 'while' '(' Expr ')' Escopo
+If = 'if' '(' Expr ')' Escopo Else
+Else = 'else'  Escopo
+Else = ε
+For = 'for' NomeVar 'in' Expr 'to' Expr 'do' Escopo
+
+E = Eb Ebr
+Eb = Tb Ebr
+Ebr = '||' Tb Ebr
+Ebr = ε
+
+Tb = Fb Tbr
+Tbr = '&&' Fb Tbr
+Tbr = ε
+
+Fb = '!' ERelUm
+Fb = ERelUm
+
+RelUm = ERelDois ERelUmF
+RelUmF = '==' ERelDois
+RelUmF = '!=' ERelDois
+RelUmF = ε
+
+RelDois = EConcat ERelDoisF
+RelDoisF = '>=' EConcat
+RelDoisF = '>' EConcat
+RelDoisF = '<=' EConcat
+RelDoisF = '<' EConcat
+RelDoisF = ε
+
+Concat = Ea EConcatR
+ConcatR = '++' Ea EConcatR
+ConcatR = ε
+
+Ea = Ta Ear
+Ear = Opa Ta Ear
+Ear = ε
+
+Ta = EUnario Tar
+Tar = Opm EUnario Tar
+Tar = ε
+
+Unario = 'opNegUn' Fa
+Unario = Fa
+
+Fa  =  'abPar' E 'fecPar'
+Fa  = 'cteInt'
+Fa  = 'cteFloat'
+Fa  = 'cteChar'
+Fa  = 'cteString'
+Fa  = 'true'
+Fa  = 'false'
+Fa  = Id Far
+Far = Vectorf
+Far = ChamadaFunc
+
+Opa = '+'
+Opa = '-'
+Opm = '*'
+Opm = '/'
+Opm = '%'
+Id = 'id'

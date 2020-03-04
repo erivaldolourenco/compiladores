@@ -1,0 +1,119 @@
+Programa = Funcao Begin
+Funcao = Funcao 'function' Vector Tipo NomeVar '(' LParam ')' Escopo
+Funcao = ε
+
+Vector = 'vector'
+Vector = 'vector' '[' Expr ']'
+Vector = ε
+
+Tipo = 'int'
+Tipo = 'float'
+Tipo = 'cchar'
+Tipo = 'char'
+Tipo = 'bool'
+Tipo = 'void'
+
+NomeVar = 'id'
+NomeVar = 'id' '[' Expr ']'
+
+Lparam = Lparam Vector Tipo NomeVar ','
+Lparam = Vector Tipo NomeVar
+
+Escopo = '{' Comandos '}'
+
+Begin = 'void' 'begin' 'abPar' 'fecPar' Escopo
+
+
+
+Comandos = Cmd Comandos
+Comandos = ε
+Cmd = Read
+Cmd = Put
+Cmd = While
+Cmd = If
+Cmd = For
+Cmd = VectorDecl ';'
+Cmd = Tipo Decl ';'
+Cmd = 'id' CmdF ';'
+Cmd = 'break' ';'
+Cmd = 'return' Expr ';'
+
+Decl = NomeVar AtbDecl
+VectorDecl = 'vector' tipo decl
+
+ChamadaFunc = '(' Expr ')'
+ChamadaFunc = '(' Expr ',' ChamadaFunc ')'
+ChamdaaFunc = '(' ')' 
+
+AtbDecl = '=' Expr
+AtbDecl = ε
+
+Read = 'read' '(' 'SimpleAsp' 'cadCaracter' 'SimpleAsp' ',' NomeVar ')' ';'
+Put = 'put' '(' 'simpleAsp' 'cadCaracter' 'simpleAsp' ',' Putr ')' ';'
+Putr = 'simpleAsp' 'cadCaracter' 'simpleAsp'
+Putr = Expr
+
+CmdF = Atribuicao
+CmdF = ChamadaFunc
+CmdF = '[' Expr ']' Atribuicao
+
+Atribuicao = '=' Expr
+
+While = 'while' '(' Expr ')' Escopo
+
+If = 'if' 'abPar' Expr 'fecPar' Escopo 'else' Escopo
+If = 'if' 'abPar' Expr 'fecPar' Escopo
+
+For = 'for' NomeVar 'in' Expr 'to' Expr 'do' Escopo
+
+Expr = Eb
+Eb = Eb '||' Tb
+Eb = Tb
+
+Tb = Tb '&&' Fb
+Tb = Fb 
+
+Fb = '!' ERelUm
+Fb = ERelUm
+
+ERelUm = ERelDois '==' ERelDois
+ERelUm = ERelDois '!=' ERelDois
+ERelUm = ERelDois
+ 
+ERelDois = Econcat '>' Econcat
+ERelDois = Econcat '>=' Econcat
+ERelDois = Econcat '<' Econcat
+ERelDois = Econcat '<=' Econcat
+ERelDois = Econcat
+
+EConcat = Ea EConcatR
+EConcatR = 'opConc' Ea EConcatR
+EConcatR = ε
+
+Econcat = Econcat '++' Ea
+Econcat = Ea
+
+Ea = Ea Opa Ta
+Ea = Ta
+
+Ta = Ta Opm Eunario 
+Ta = EUnario
+
+EUnario = '-' Fa
+EUnario = Fa
+
+Fa  =  '(' Expr ')'
+Fa  = 'cteInt'
+Fa  = 'cteFloat'
+Fa  = 'cteChar'
+Fa  = 'cteString'
+Fa  = 'true'
+Fa  = 'false'
+Fa = Id Vector
+Fa = Id ChamadaFunc
+Opa = '+'
+Opa = '-'
+Opm = '*'
+Opm = '/'
+Opm = '%'
+Id = 'id'

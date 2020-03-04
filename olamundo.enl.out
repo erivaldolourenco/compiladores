@@ -1,0 +1,35 @@
+   1 void begin()
+
+          Programa = Funcao Begin
+          Funcao = épsilon
+          Begin = 'void' 'begin' 'abrpar' 'fecpar' Escopo
+              [0001, 0004] (0025, VOID                ) {void}
+              [0001, 0010] (0022, BEGIN               ) {begin}
+              [0001, 0010] (0037, ABR_PAR             ) {(}
+              [0001, 0011] (0038, FEC_PAR             ) {)}
+   2 {
+
+           Escopo = 'abrCh' Comandos 'FecCh
+              [0002, 0000] (0035, ABR_CH              ) {{}
+   3     put('%s','Ola mundo');
+
+           Comandos = Cmd Comandos
+           Cmd = Put
+           Put = 'put' 'abrPar' 'simpleAsp' 'cadCaracter' 'simpleAsp' 'sepVir' Putr 'fecPar' 'sepPVirg
+              [0003, 0007] (0027, PUT                 ) {put}
+              [0003, 0007] (0037, ABR_PAR             ) {(}
+              [0003, 0008] (0043, SIMPLE_ASP          ) {'}
+              [0003, 0009] (0047, CAD_CARACTER        ) {%s}
+              [0003, 0011] (0043, SIMPLE_ASP          ) {'}
+              [0003, 0012] (0041, SEP_VIRG            ) {,}
+          Putr = 'simpleAsp' 'cadCaracter' 'simpleAsp'
+              [0003, 0013] (0043, SIMPLE_ASP          ) {'}
+              [0003, 0023] (0047, CAD_CARACTER        ) {Ola mundo}
+              [0003, 0023] (0043, SIMPLE_ASP          ) {'}
+              [0003, 0024] (0038, FEC_PAR             ) {)}
+              [0003, 0025] (0042, SEP_P_VIRG          ) {;}
+   4 }
+
+           Comandos = épsilon
+              [0004, 0000] (0036, FEC_CH              ) {}}
+   5 
