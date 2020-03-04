@@ -1,3 +1,5 @@
+#Verificação de tipo
+
 "1 - Eb = Eb 'ou' Tb"
 {
   Nterm Eb; Eb.tp = Bool; Eb.nome = geraTemp();
