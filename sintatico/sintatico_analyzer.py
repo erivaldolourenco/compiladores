@@ -760,17 +760,17 @@ class Sintatico(object):
             self.printToken()
             self.token = self.lex.nextToken()
             self.concat()
-        if self.token.category == Category.OP_MA:
+        elif self.token.category == Category.OP_MA:
             Tools.print_f("          RelDoisF = 'opMa' EConcat", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.concat()
-        if self.token.category == Category.OP_MEIGU:
+        elif self.token.category == Category.OP_MEIGU:
             Tools.print_f("          RelDoisF = 'opMeigu' EConcat", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
             self.concat()
-        if self.token.category == Category.OP_ME:
+        elif self.token.category == Category.OP_ME:
             Tools.print_f("          RelDoisF = 'opMe' EConcat", self.filename)
             self.printToken()
             self.token = self.lex.nextToken()
