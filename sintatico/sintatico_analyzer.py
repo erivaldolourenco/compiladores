@@ -775,8 +775,8 @@ class Sintatico(object):
             self.printToken()
             self.token = self.lex.nextToken()
             self.concat()
-
         else:
+            Tools.print_f("          RelDoisF = épsilon", self.filename)
             pass
 
     def concat(self):
